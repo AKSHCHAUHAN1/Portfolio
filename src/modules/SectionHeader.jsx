@@ -1,23 +1,17 @@
 import { motion } from 'framer-motion';
-import { useScrambleText } from '../hooks/useScrambleText';
 
-export function SectionHeader({ sector, title, accent, copy, className = '' }) {
-  const scrambled = useScrambleText(title);
-  const parts = accent ? scrambled.split(accent) : [scrambled];
-  const sectorLabel = sector ? `SECTOR_${sector}` : 'CORE_MODULE';
+export function SectionHeader({ title, accent, copy, className = '' }) {
+  const parts = accent ? title.split(accent) : [title];
 
   return (
     <motion.header
       className={`section-header ${className}`}
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <p className="hud-eyebrow">
-        <span className="eyebrow-square" /> 
-        {'SYS.LOC // '}
-        {sectorLabel}
-        {' // ACTIVE'}
+        <span className="eyebrow-square" /> Portfolio
       </p>
       <h1>
         {accent && parts.length > 1 ? (
@@ -27,7 +21,7 @@ export function SectionHeader({ sector, title, accent, copy, className = '' }) {
             {parts.slice(1).join(accent)}
           </>
         ) : (
-          scrambled
+          title
         )}
       </h1>
       {copy && (

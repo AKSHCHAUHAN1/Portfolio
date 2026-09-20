@@ -1,90 +1,158 @@
-import { PageShell } from '../components/PageShell';
-import { SectionHeader } from '../modules/SectionHeader';
-import { SkillCard } from '../modules/SkillCard';
+import { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Atom,
   Binary,
+  Boxes,
+  Braces,
+  Cloud,
   Code2,
+  Container,
   Database,
   FileCode2,
-  Github,
   GitBranch,
+  Github,
   Globe,
   HardDrive,
   Laptop,
   Layers,
-  Cloud,
   Server,
+  Shield,
   TerminalSquare,
-  Braces,
-  Workflow,
+  Workflow
 } from 'lucide-react';
+import { PageShell } from '../components/PageShell';
+import { SectionHeader } from '../modules/SectionHeader';
+import { skillCategories } from '../utils/data';
 
-import { useState } from 'react';
-
-const skillsList = [
-  { name: 'C', icon: Binary },
-  { name: 'C++', icon: Binary },
-  { name: 'PYTHON', icon: Code2 },
-  { name: 'BASH', icon: TerminalSquare },
-  { name: 'LINUX', icon: Server },
-  { name: 'DOCKER', icon: Layers },
-  { name: 'JENKINS', icon: Workflow },
-  { name: 'GIT', icon: GitBranch },
-  { name: 'GITHUB', icon: Github },
-  { name: 'GITLAB', icon: GitBranch },
-  { name: 'AWS', icon: Cloud },
-  { name: 'HTML', icon: Globe },
-  { name: 'CSS', icon: Laptop },
-  { name: 'JAVASCRIPT', icon: Braces },
-  { name: 'NODE.JS', icon: FileCode2 },
-  { name: 'REACT.JS', icon: Atom },
-  { name: 'SQL', icon: Database },
-  { name: 'MONGODB', icon: HardDrive }
-];
+const ICON_MAP = {
+  cloud: Cloud,
+  container: Container,
+  boxes: Boxes,
+  workflow: Workflow,
+  server: Server,
+  github: Github,
+  terminalsquare: TerminalSquare,
+  atom: Atom,
+  filecode2: FileCode2,
+  braces: Braces,
+  code2: Code2,
+  globe: Globe,
+  laptop: Laptop,
+  binary: Binary,
+  database: Database,
+  harddrive: HardDrive,
+  layers: Layers,
+  shield: Shield
+};
 
 export default function Skills() {
-  const [hoveredSkill, setHoveredSkill] = useState(null);
-  const [spotlight, setSpotlight] = useState({ x: '50%', y: '50%' });
+  const [activeCategory, setActiveCategory] = useState('all');
 
-  const updateSpotlight = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    setSpotlight({
-      x: `${rect.left + rect.width / 2}px`,
-      y: `${rect.top + rect.height / 2}px`
-    });
-  };
+  const categories = useMemo(() => {
+    return [
+      { id: 'all', name: 'All Domains', tag: 'COMPLETE_MATRIX' },
+      ...skillCategories
+    ];
+  }, []);
+
+  const displayedSkills = useMemo(() => {
+    if (activeCategory === 'all') {
+      return skillCategories.flatMap((cat) => cat.skills);
+    }
+    return skillCategories.find((cat) => cat.id === activeCategory)?.skills || [];
+  }, [activeCategory]);
 
   return (
-    <PageShell>
+    <PageShell className="skills-page">
       <SectionHeader
-        sector="03"
-        title="PROTOCOL ARSENAL"
-        accent="ARSENAL"
-        copy="SYS_STATUS: OPTIMAL. EXPLORING THE CORE TECHNOLOGIES POWERING THE STACK."
+        sector="04"
+        title="Tools I work with"
+        accent="Skills"
+        copy="A practical toolkit across cloud infrastructure, web development, automation, and computer science foundations."
       />
-      <section className="skills-stage">
-        <div
-          className={`skills-spotlight${hoveredSkill ? ' is-visible' : ''}`}
-          style={{ '--spotlight-x': spotlight.x, '--spotlight-y': spotlight.y }}
-          aria-hidden="true"
-        />
-        <div className="skills-grid">
-          {skillsList.map((skill, index) => (
-            <SkillCard
-              key={skill.name}
-              {...skill}
-              delay={index * 0.08}
-              isHovered={hoveredSkill === skill.name}
-              onHoverStart={(event) => {
-                setHoveredSkill(skill.name);
-                updateSpotlight(event);
-              }}
-              onHoverEnd={() => setHoveredSkill(null)}
-            />
-          ))}
+
+      {/* Category Filter Tabs */}
+      <div className="skills-category-tabs">
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            type="button"
+            className={`skills-cat-btn ${activeCategory === cat.id ? 'is-active' : ''}`}
+            onClick={() => setActiveCategory(cat.id)}
+          >
+            <span className="cat-btn-text">{cat.name}</span>
+            <span className="cat-btn-tag">{cat.tag}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Skills Grid */}
+      <div className="skills-matrix-grid">
+        <AnimatePresence mode="popLayout">
+          {displayedSkills.map((skill, index) => {
+            const Icon = ICON_MAP[skill.icon] || Code2;
+            return (
+              <motion.div
+                key={skill.name}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.25, delay: index * 0.02 }}
+                className="skill-protocol-card group"
+              >
+                {/* Tactical Corner Accents */}
+                <span className="hud-corner hud-corner--tl" />
+                <span className="hud-corner hud-corner--br" />
+
+                <div className="skill-card-top">
+                  <div className="skill-icon-box">
+                    <Icon size={18} className="text-primary group-hover:scale-110 transition-transform" />
+                  </div>
+                  <span className="skill-level-pill">{skill.level}%</span>
+                </div>
+
+                <h3 className="skill-card-title">{skill.name}</h3>
+
+                <div className="skill-card-highlight">
+                  <span className="highlight-bullet">&bull;</span>
+                  <span>{skill.highlight}</span>
+                </div>
+
+                {/* Tactical Progress Meter */}
+                <div className="skill-meter-wrap">
+                  <div className="skill-meter-bar">
+                    <motion.div
+                      className="skill-meter-fill"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.7, delay: index * 0.03, ease: 'easeOut' }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+
+      {/* Bottom Summary Ticker */}
+      <div className="skills-footer-strip">
+        <div className="skills-stat">
+          <span className="stat-label">TOTAL PROTOCOLS:</span>
+          <span className="stat-val">{skillCategories.flatMap((c) => c.skills).length} Core Systems</span>
         </div>
-      </section>
+        <div className="skills-stat">
+          <span className="stat-label">PRIMARY CLUSTER:</span>
+          <span className="stat-val">AWS (EC2, ASG, ALB, EKS) + Docker + Kubernetes</span>
+        </div>
+        <div className="skills-stat">
+          <span className="stat-label">AUTOMATION:</span>
+          <span className="stat-val">GitLab CI + GitHub Actions + Terraform</span>
+        </div>
+      </div>
     </PageShell>
   );
 }

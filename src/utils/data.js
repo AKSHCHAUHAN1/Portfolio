@@ -1,262 +1,348 @@
+export const personalInfo = {
+  name: 'Aksh Chauhan',
+  role: 'DevOps & Full-Stack Engineer',
+  degree: 'B.Tech CSE (Major: DevOps)',
+  institution: 'University of Petroleum and Energy Studies (UPES)',
+  cgpa: '7.34',
+  location: 'Dehradun / Haridwar, India',
+  email: 'aksh111828@gmail.com',
+  phone: '+91 8449612889',
+  avatar: '/aksh-chauhan.jpg',
+  resumeUrl: '/resume.pdf',
+  github: 'https://github.com/AKSHCHAUHAN1',
+  linkedin: 'https://linkedin.com/in/akshchauhan1',
+  leetcode: 'https://leetcode.com/u/akshchauhan1',
+  summary:
+    'Computer Science undergraduate with full-stack development experience across front-end, back-end, and API layers, backed by a solid grounding in data structures, algorithms, and the software development lifecycle. Comfortable working in Agile teams with Git-based version control, CI/CD pipelines, and cloud fundamentals (AWS), and shipping production-style features – from database-backed CRUD flows to containerized deployments – both independently and as part of a team.'
+};
+
 export const navItems = [
-  { id: 'home', label: 'HOME', sector: '01' },
-  { id: 'about', label: 'ABOUT', sector: '02' },
-  { id: 'skills', label: 'SKILLS', sector: '03' },
-  { id: 'projects', label: 'PROJECTS', sector: '04' },
-  { id: 'blog', label: 'BLOG', sector: '05' },
-  { id: 'contact', label: 'CONNECT', sector: '06' }
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' }
 ];
 
-export const skills = [
+export const experiences = [
   {
-    name: 'KUBERNETES',
-    binary: 'CLUSTER_MANAGER.EXE',
-    code: 'ORCH // K8S-v1.28',
-    level: 92,
-    metrics: [
-      ['PODS_RUNNING', '142', 'mint'],
-      ['CPU_UTIL', '45%', 'text'],
-      ['MEM_UTIL', '68%', 'warning']
+    company: 'Xebia IT Architects',
+    role: 'Frontend & API Engineering Intern',
+    period: 'Jun 2026 – Jul 2026',
+    duration: '2 Months',
+    type: 'Internship',
+    description:
+      'Engineered the mission-critical front-end of a high-concurrency university management dashboard for a tier-1 client, delivering resilient CRUD operations and automated workflows.',
+    points: [
+      'Architected and owned the end-to-end Student Management module encompassing CRUD operations, audit archive systems, and automated ID-generation interfaces.',
+      'Integrated resilient REST APIs to seamlessly bridge frontend UI states with microservice backend pipelines under tight SLA constraints.',
+      'Collaborated within a cross-functional Agile team using shared GitLab repositories, MR reviews, and Git-based feature branching workflows.'
     ],
-    icon: 'boxes'
+    tech: ['React.js', 'REST APIs', 'GitLab CI', 'JavaScript', 'Tailwind CSS', 'State Management']
   },
   {
-    name: 'DOCKER',
-    binary: 'RUNTIME_ENGINE',
-    code: 'CNTNR // DKR-v24',
-    level: 95,
-    metrics: [['IMAGE_CACHE', '418'], ['BUILD_DELTA', '12s']],
-    icon: 'container'
-  },
-  {
-    name: 'JENKINS',
-    binary: 'AUTOMATION_ENGINE',
-    code: 'PIPE // JENKINS',
-    level: 90,
-    metrics: [['JOB_QUEUE', '14'], ['FAIL_RATE', '0.2%']],
-    icon: 'workflow'
-  },
-  {
-    name: 'GITLAB CI/CD',
-    binary: 'AUTOMATION_PIPELINE',
-    code: 'PIPE // GITLAB',
-    level: 92,
-    logs: ['> build_job_04: SUCCESS', '> deploy_prod: IN_PROGRESS...'],
-    icon: 'workflow'
-  },
-  {
-    name: 'GIT / GITHUB',
-    binary: 'VERSION_CONTROL',
-    code: 'SCM // GIT',
-    level: 88,
-    chart: [22, 34, 18, 48, 72, 42, 26],
-    icon: 'github'
-  },
-  {
-    name: 'AWS / EC2',
-    binary: 'CLOUD_INFRA',
-    code: 'CLOUD // AWS',
-    level: 85,
-    chart: [62, 58, 71, 74, 68, 77, 80],
-    icon: 'cloud'
-  },
-  {
-    name: 'PYTHON',
-    binary: 'SCRIPTING_ENGINE',
-    code: 'LANG // PY',
-    level: 94,
-    metrics: [['SCRIPTS', '32'], ['AUTOMATION', 'HIGH']],
-    icon: 'code2'
-  },
-  {
-    name: 'BASH / LINUX',
-    binary: 'SYSTEM_SHELL',
-    code: 'OPS // LINUX',
-    level: 84,
-    metrics: [['SHELL_SCRIPTS', '18'], ['SERVERS', '12']],
-    icon: 'terminalsquare'
-  },
-  {
-    name: 'JAVASCRIPT',
-    binary: 'WEB_RUNTIME',
-    code: 'LANG // JS',
-    level: 96,
-    metrics: [['UI_MODULES', '27'], ['SERVICES', '14']],
-    icon: 'braces'
-  },
-  {
-    name: 'NODE.JS',
-    binary: 'BACKEND_RUNTIME',
-    code: 'RUNTIME // NODE',
-    level: 90,
-    metrics: [['APIS', '19'], ['EVENTS', '204']],
-    icon: 'filecode2'
-  },
-  {
-    name: 'REACT.JS',
-    binary: 'UI_RUNTIME',
-    code: 'FRAMEWORK // REACT',
-    level: 91,
-    metrics: [['COMPONENTS', '46'], ['ROUTES', '8']],
-    icon: 'atom'
-  },
-  {
-    name: 'MONGODB / SQL',
-    binary: 'DATA_LAYER',
-    code: 'DATA // PERSISTENT',
-    level: 83,
-    metrics: [['COLLECTIONS', '22'], ['QUERIES', '140']],
-    icon: 'database'
-  },
-  {
-    name: 'C / C++',
-    binary: 'LOW_LEVEL_LANG',
-    code: 'LANG // C',
-    level: 78,
-    metrics: [['ALGORITHMS', 'DSA'], ['SYSTEMS', 'FOUNDATION']],
-    icon: 'binary'
-  },
-  {
-    name: 'HTML / CSS',
-    binary: 'MARKUP_STYLES',
-    code: 'UI // HTML_CSS',
-    level: 87,
-    metrics: [['PAGES', '14'], ['STYLES', '96']],
-    icon: 'filecode2'
+    company: 'Bhavyaa Enterprises Pvt. Ltd.',
+    role: 'Full-Stack & DevOps Intern',
+    period: 'Jun 2025 – Jul 2025',
+    duration: '2 Months',
+    type: 'Internship',
+    description:
+      'Collaborated with core engineering to design, implement, and deploy a production full-stack web application backed by automated CI/CD and secure role-based access.',
+    points: [
+      'Engineered and tested a full-stack platform end-to-end, establishing automated GitHub Actions CI/CD workflows for linting, testing, and containerized artifact builds.',
+      'Implemented robust Authentication and Role-Based Access Control (RBAC) security guardrails to enforce least-privilege principles.',
+      'Authored comprehensive system documentation, architecture blueprints, and successfully handed off the production codebase for ongoing scaling.'
+    ],
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'GitHub Actions', 'RBAC & Auth', 'Docker']
   }
 ];
+
+export const educationHistory = [
+  {
+    institution: 'University of Petroleum and Energy Studies (UPES)',
+    degree: 'B.Tech in Computer Science and Engineering',
+    specialization: 'Major: DevOps',
+    grade: 'CGPA: 7.34',
+    period: '2023 – 2027',
+    location: 'Dehradun, India',
+    status: 'In Progress (Final Years)',
+    details:
+      'Rigorous curriculum spanning Cloud Computing, Containerization & Orchestration, Advanced Computer Networks, Operating Systems, Database Management Systems, System Design, and Enterprise Software Architecture.'
+  },
+  {
+    institution: 'Delhi Public School, Ranipur',
+    degree: 'Senior Secondary Education (Class XII)',
+    specialization: 'Science (PCM & Computer Science)',
+    grade: 'Score: 78%',
+    period: '2022 – 2023',
+    location: 'Haridwar, India',
+    status: 'Completed',
+    details: 'Foundation in Mathematics, Physics, and Object-Oriented Programming principles in C++.'
+  },
+  {
+    institution: 'Delhi Public School, Ranipur',
+    degree: 'Secondary School Education (Class X)',
+    specialization: 'Core Sciences & Mathematics',
+    grade: 'Score: 91.8%',
+    period: '2020 – 2021',
+    location: 'Haridwar, India',
+    status: 'Completed',
+    details: 'Distinction honors with academic excellence in Mathematics and Sciences.'
+  }
+];
+
+export const accomplishments = [
+  {
+    title: 'Solved 100+ DSA Problems on LeetCode',
+    issuer: 'LeetCode',
+    period: 'Ongoing',
+    icon: 'binary',
+    desc: 'Demonstrated continuous problem-solving proficiency across Trees, Graphs, Dynamic Programming, and Two-Pointer data structures in Python and C++.'
+  },
+  {
+    title: 'AWS Cloud Quest: Cloud Practitioner',
+    issuer: 'AWS Training & Certification',
+    period: 'July 2026',
+    icon: 'cloud',
+    desc: 'Validated comprehensive operational skills in AWS Cloud architecture, compute (EC2/ASG), networking (VPC/ALB), storage (S3), and security best practices (IAM).'
+  },
+  {
+    title: 'Finalist, Hack the Throne – National Level Hackathon',
+    issuer: 'IIIT-Una (MERAKI Annual Technical Fest)',
+    period: 'February 2026',
+    icon: 'award',
+    desc: 'Competed with elite university teams nationwide to build a real-time fault-tolerant distributed system under strict 36-hour hackathon deadlines.'
+  },
+  {
+    title: 'Runner-up, ByteQuest – Technical Challenge',
+    issuer: 'UPES ACM and ACM-W Student Chapter',
+    period: 'April 2025',
+    icon: 'shield',
+    desc: 'Secured 2nd place in a high-intensity software engineering and algorithmic challenge testing rapid debugging, data structures, and system modeling.'
+  },
+  {
+    title: 'Participated in Build4Bharat: Hackathon 9.0',
+    issuer: 'UPES-CSI Student Chapter',
+    period: 'March 2026',
+    icon: 'terminal',
+    desc: 'Developed a scalable cloud-first solution tackling enterprise automation challenges evaluated by top industry judges.'
+  }
+];
+
+export const skillCategories = [
+  {
+    id: 'cloud',
+    name: 'Cloud & Infrastructure',
+    skills: [
+      { name: 'AWS (EC2, ASG, ALB, IAM, EKS)', level: 90, icon: 'cloud' },
+      { name: 'Docker & Containerization', level: 95, icon: 'container' },
+      { name: 'Kubernetes (K8s)', level: 86, icon: 'boxes' },
+      { name: 'Terraform', level: 82, icon: 'workflow' },
+      { name: 'Nginx Reverse Proxy', level: 88, icon: 'server' },
+      { name: 'Jenkins CI/CD', level: 85, icon: 'workflow' },
+      { name: 'GitHub Actions', level: 92, icon: 'github' },
+      { name: 'GitLab CI/CD', level: 90, icon: 'workflow' },
+      { name: 'Linux / System Administration', level: 90, icon: 'terminalsquare' }
+    ]
+  },
+  {
+    id: 'fullstack',
+    name: 'Full-Stack Web Development',
+    skills: [
+      { name: 'React.js (React 18)', level: 94, icon: 'atom' },
+      { name: 'Node.js', level: 90, icon: 'filecode2' },
+      { name: 'Express.js', level: 88, icon: 'braces' },
+      { name: 'FastAPI (Python)', level: 92, icon: 'code2' },
+      { name: 'REST APIs & Webhooks', level: 95, icon: 'globe' },
+      { name: 'HTML5 & CSS3', level: 94, icon: 'filecode2' },
+      { name: 'Tailwind CSS', level: 92, icon: 'laptop' }
+    ]
+  },
+  {
+    id: 'languages',
+    name: 'Programming Languages',
+    skills: [
+      { name: 'Python', level: 94, icon: 'code2' },
+      { name: 'C / C++', level: 85, icon: 'binary' },
+      { name: 'JavaScript (ES6+)', level: 92, icon: 'braces' },
+      { name: 'Bash / Shell Scripting', level: 88, icon: 'terminalsquare' }
+    ]
+  },
+  {
+    id: 'databases',
+    name: 'Databases & CS Fundamentals',
+    skills: [
+      { name: 'PostgreSQL & TimescaleDB', level: 88, icon: 'database' },
+      { name: 'MongoDB', level: 86, icon: 'harddrive' },
+      { name: 'MySQL', level: 85, icon: 'database' },
+      { name: 'Data Structures & Algorithms', level: 90, icon: 'binary' },
+      { name: 'Object-Oriented Programming (OOP)', level: 92, icon: 'layers' },
+      { name: 'Computer Networks & Security', level: 88, icon: 'shield' },
+      { name: 'Operating Systems & DBMS', level: 87, icon: 'server' }
+    ]
+  }
+];
+
+export const skills = skillCategories.flatMap((cat) => cat.skills);
 
 export const projects = [
   {
     id: 'incidentiq',
     name: 'IncidentIQ',
+    title: 'AI Anomaly Detector & Incident Intelligence Platform',
     repo: 'AKSHCHAUHAN1/IncidentIQ',
-    type: 'AI incident intelligence platform',
-    category: 'Observability / AIOps',
+    type: 'Observability / AIOps Platform',
+    category: 'AIOps & Observability',
     description:
-      'Microservice-based incident intelligence platform for monitoring websites, predicting anomalies, and tracking operational incidents.',
+      'Mission-critical microservice-based incident intelligence platform engineered for proactive website health probing, real-time telemetry ingestion, and ML-powered SLA breach prediction.',
     about:
-      'IncidentIQ combines a React dashboard, Node.js API gateway, website probing, data ingestion, and a Python ML service to surface incidents, anomaly patterns, predictions, and service health in one workflow.',
+      'IncidentIQ bridges frontend operational dashboards with a distributed backend stack. It features an automated website health probing engine, high-throughput telemetry ingestion, and a Python machine learning service that forecasts anomalies 10–15 minutes ahead of critical SLA breaches.',
     github: 'https://github.com/AKSHCHAUHAN1/IncidentIQ.git',
     previewImage: '/incidentiq.png',
-    screenshotLabel: 'IncidentIQ screenshot',
-    stack: ['React', 'Node.js', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'PyTorch'],
-    highlights: [
-      'Website probing and data-ingestion services',
-      'LSTM forecasting, Isolation Forest anomaly detection, and log classification',
-      'Incident, analytics, approval, prediction, and site-management APIs'
+    screenshotLabel: 'IncidentIQ Live Telemetry Dashboard',
+    stack: ['React 18', 'Node.js', 'FastAPI (Python)', 'PyTorch', 'scikit-learn', 'PostgreSQL (TimescaleDB)', 'Docker Compose'],
+    metrics: [
+      { label: 'Services Orchestrated', value: '10 Containers' },
+      { label: 'Forecasting Horizon', value: '10-15 Min Ahead' },
+      { label: 'Detection Engine', value: 'Isolation Forest + LSTM' },
+      { label: 'DB Architecture', value: 'TimescaleDB Time-Series' }
     ],
-    image: 'datacenter'
+    highlights: [
+      'Built reactive executive dashboard UI with real-time incident notifications and approval workflows.',
+      'Engineered an ML ensemble model leveraging LSTM forecasting and Isolation Forest for early anomaly classification.',
+      'Orchestrated ten self-hosted containerized microservices via Docker Compose with dedicated healthchecks and restart policies.',
+      'Integrated TimescaleDB time-series ingestion pipelines supporting high-cardinality telemetry metrics.'
+    ]
   },
   {
     id: 'modelflow',
     name: 'Modelflow',
+    title: 'Zero-Configuration AI Deployment Platform on AWS',
     repo: 'Sanyamgoyal21/Modelflow',
-    type: 'Zero-config ML deployment platform',
-    category: 'MLOps / Deployment',
+    type: 'MLOps & Cloud Infrastructure Platform',
+    category: 'MLOps & Cloud Engineering',
     description:
-      'Platform that turns uploaded machine-learning models into production-ready API endpoints without requiring users to manage infrastructure.',
+      'Zero-configuration cloud platform that transforms uploaded machine-learning models into highly-available, production-ready inference API endpoints without manual infrastructure setup.',
     about:
-      'Modelflow is built for students and independent developers who need to deploy ML models quickly. It handles model upload, validation, containerization, inference serving, authentication, and endpoint management through a full-stack dashboard.',
+      'Designed for developers and ML teams to bridge the gap between Python model artifacts and elastic production APIs. It automates model validation, dynamic containerization, reverse-proxy routing with Nginx, and cloud orchestration on AWS with Auto Scaling Groups and Application Load Balancers.',
     github: 'https://github.com/Sanyamgoyal21/Modelflow.git',
     previewImage: '/modelflow.png',
-    screenshotLabel: 'Modelflow screenshot',
-    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Python', 'Docker', 'AWS'],
-    highlights: [
-      'Model upload flow with validation and hosted inference APIs',
-      'Google OAuth, dashboard management, and endpoint visibility',
-      'Docker, Nginx, EC2, Auto Scaling Groups, and load-balancer oriented deployment'
+    screenshotLabel: 'Modelflow Deployment Dashboard',
+    stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Python', 'Docker', 'AWS (EC2, ASG, ALB)', 'Nginx', 'Google OAuth'],
+    metrics: [
+      { label: 'Cloud Platform', value: 'AWS Elastic Architecture' },
+      { label: 'Traffic Distribution', value: 'Application Load Balancer' },
+      { label: 'Autonomous Scaling', value: 'Auto Scaling Groups' },
+      { label: 'Auth Protocol', value: 'Google OAuth 2.0 & RBAC' }
     ],
-    image: 'matrix'
+    highlights: [
+      'Led frontend architectural design and deployed end-to-end platform on AWS with Auto Scaling Groups and ALB.',
+      'Containerized every backend service using Docker multi-stage builds for consistent, repeatable releases.',
+      'Configured Nginx reverse proxy to route high-frequency client HTTP requests efficiently across distributed instances.',
+      'Integrated Google OAuth 2.0 and role-based access management for secure multi-tenant endpoint access.'
+    ]
   },
   {
     id: 'solaris',
     name: 'Solaris',
+    title: 'AI-Powered Solar Feasibility & Financial Analytics Platform',
     repo: 'dhairyathareja/Solaris',
-    type: 'Solar analysis and planning tool',
-    category: 'Energy / Analytics',
+    type: 'Energy Analytics & 3D Visualization',
+    category: 'Full-Stack & Computer Vision',
     description:
-      'Solar rooftop planning app that analyzes electricity bills, recommends system size, and models generation, savings, payback, and carbon offset.',
+      'Full-stack solar rooftop assessment and financial feasibility platform that extracts electricity consumption data using OCR and renders 3D rooftop solar generation models.',
     about:
-      'Solaris lets users upload electricity bills, extract monthly consumption, configure rooftop/system assumptions, and review solar feasibility through KPIs, charts, financial projections, and generated reports.',
+      'Solaris allows residential and commercial clients to upload electricity utility bills, automatically extracts key billing parameters via Tesseract.js OCR, feeds forecasting logic, and calculates solar generation KPIs, payback timelines, NPV, and carbon offsets with interactive Three.js 3D rendering.',
     github: 'https://github.com/dhairyathareja/Solaris.git',
     previewImage: '/solaris.png',
-    screenshotLabel: 'Solaris screenshot',
-    stack: ['React', 'Vite', 'Three.js', 'GSAP', 'Recharts', 'Express', 'Docker'],
-    highlights: [
-      'Electricity bill upload and monthly consumption extraction',
-      'Solar sizing, annual generation, grid offset, savings, payback, NPV, and IRR views',
-      'Interactive dashboard with charts, report generation, and Docker/Nginx deployment setup'
+    screenshotLabel: 'Solaris 3D Rooftop & Analytics',
+    stack: ['React 18', 'Three.js', 'Node.js', 'FastAPI (Python)', 'MongoDB', 'Tesseract.js', 'Docker', 'Nginx'],
+    metrics: [
+      { label: 'OCR Engine', value: 'Tesseract.js Client-Side' },
+      { label: '3D Rendering', value: 'Three.js / WebGL' },
+      { label: 'Analytics Engine', value: 'FastAPI Payback & NPV' },
+      { label: 'Deployment', value: 'Dockerized Microservices' }
     ],
-    image: 'grid'
+    highlights: [
+      'Engineered interactive frontend workflow with client-side OCR parsing for rapid electricity bill extraction.',
+      'Implemented solar sizing algorithms modeling generation, grid offset, financial payback, and IRR curves.',
+      'Integrated Three.js interactive 3D solar array visualizations for rooftop spatial planning.',
+      'Deployed application as containerized microservices behind Nginx reverse proxy with automated health checks.'
+    ]
   }
 ];
 
 export const blogPosts = [
   {
     title: 'The Future of AI Deployment: Building Zero-Configuration Pipelines on AWS',
-    tag: 'MLOPS // DEPLOYMENT',
+    tag: 'MLOps · Deployment',
     id: 'AI_DEP_AWS',
     date: '2026.05.05',
-    read: '6 MIN READ',
+    read: '6 min read',
     image: '/article1.png',
     summary:
-      'Machine learning models are changing faster than ever before, yet implementing them is still a huge challenge. The answer lies in zero-config deployment pipelines that automate infrastructure building.',
+      'Machine learning models are evolving faster than ever, yet deploying them reliably remains a major bottleneck. The solution lies in zero-config automated deployment pipelines on AWS that abstract away cloud provisioning.',
     body: [
-      'Machine learning models are changing faster than ever before, yet implementing them is still a huge challenge. While data scientists are great at developing machine learning models, implementing their Python code into a highly available production-ready API requires expert knowledge of DevOps practices. This causes delays in release cycles and inconsistent environments. The answer lies in zero-config deployment pipelines that automate the tedious job of building cloud infrastructure.',
-      '### The Problem of Implementing Machine Learning Models',
-      'The conventional approach to implementation involves human intervention at almost every stage of the process. First, the engineer must verify the model itself, then create a unique Dockerfile, configure reverse proxies for API routing, provision servers, and deploy load balancers. Not only does this make room for human error, but it also takes up much-needed engineering time. In situations where a model requires scaling rapidly due to sudden traffic spikes, manual infrastructure cannot cope.',
-      '### Zero-Configuration Deployment Pipeline',
-      'In a zero-configuration platform, the infrastructure used for the project is abstracted away from the end-user. Ideally, the process would involve uploading a model, after which the pipeline will automate the entire process, including but not limited to packaging, configuring reverse proxies, and cloud deployment.',
+      'Machine learning models are evolving faster than ever before, yet deploying them to production remains a major bottleneck in engineering workflows. While data scientists excel at developing sophisticated algorithms, converting raw Python code into an elastic, highly-available API requires specialized DevOps expertise. This friction causes release delays, configuration drift, and environment mismatches. The answer lies in zero-configuration deployment pipelines that automate infrastructure provisioning from start to finish.',
+      '### The Challenge of Traditional Model Serving',
+      'The traditional deployment workflow requires manual intervention at almost every stage: validating dependencies, drafting Dockerfiles, configuring Nginx reverse proxies, provisioning compute instances, and hooking up load balancers. This manual overhead wastes vital engineering hours and introduces human error. When traffic suddenly spikes, manual infrastructure simply cannot keep pace.',
+      '### Anatomy of a Zero-Configuration Architecture',
+      'In a zero-configuration paradigm, cloud infrastructure complexity is entirely abstracted away. An engineer simply uploads their serialized model file (.pkl, .onnx, or .pt), and the platform takes over: automated verification, containerization, reverse-proxy generation, and cloud deployment.',
       { type: 'image', src: '/article1.png', alt: 'Zero-Configuration AI Pipeline Architecture' },
-      '### Infrastructure Design Using AWS',
-      'Such a setup will require a blend of container orchestration tools and cloud technologies.',
-      '**Packaging Using Docker and Reverse Proxies Using Nginx:** The initial step towards automation in our case involves packaging the model to be deployed using Docker. Additionally, we use nginx to configure reverse proxies to route all incoming HTTP requests from clients to the server hosting the model.',
-      '**Availability using EC2, ASG, and ALB:** Once the workload is dockerized, the next step is to deploy it into the cloud. Instead of using only one Amazon EC2 instance, we leverage AWS’ auto scaling feature by placing the workload behind an application load balancer. As such, when many users connect to the API, AWS automatically spins more instances to distribute the request evenly before shutting them off when there is less traffic.',
-      '### Conclusion',
-      'A team can save up to 30% of time spent on deployment processes using such a pipeline and minimize DevOps operations during routine updates since there will be no need for human interaction with this system. Zero configuration represents the future of AI application development.',
+      '### Cloud Infrastructure on AWS: EC2, ASG, and ALB',
+      'Building this platform on AWS combines compute elasticity with rock-solid reliability:',
+      '**Docker Containerization & Nginx Routing:** The uploaded model is encapsulated in a lean Docker container with standardized inference endpoints. An Nginx reverse proxy sits in front of the container to handle SSL termination, request buffering, and path-based routing.',
+      '**High Availability with Auto Scaling Groups & ALB:** Instead of a single brittle instance, workloads are placed behind an AWS Application Load Balancer (ALB). An Auto Scaling Group (ASG) continuously monitors CPU/memory thresholds, spinning up additional EC2 instances during peak load and gracefully terminating them when traffic subsides.',
+      '### Measurable Impact',
+      'By implementing automated deployment pipelines, engineering teams report reducing model release cycles by up to 70% while drastically cutting routine DevOps maintenance overhead. Zero-configuration platforms represent the definitive future of production AI.',
       '### Frequently Asked Questions',
-      '**Why do you recommend an Application Load Balancer (ALB) rather than a Classic Load Balancer?**',
-      'ALBs are Layer 7 (HTTP/HTTPS) load balancers capable of directing traffic based on the URL path, making them perfect for routing requests to particular services or APIs that host several AI models.',
-      '**Would this approach be costly for a project with limited resources?**',
-      'Not really since it’s possible to adjust the minimum capacity of an Auto Scaling Group to just one small instance, allowing for efficient scaling and incurring costs only when required.',
-      { type: 'cta', text: '(Call to action): Curious about my design for a zero-configuration platform? Feel free to explore the "Modelflow" project on my portfolio page or inspect the architecture codebase on my ', linkText: 'GitHub profile!', linkUrl: 'https://github.com/Sanyamgoyal21/Modelflow' }
+      '**Why use an Application Load Balancer (ALB) over a Classic Load Balancer?**',
+      'ALBs operate at Layer 7 (HTTP/HTTPS) and provide advanced path-based and host-based routing, which is essential for multi-tenant AI platforms serving diverse model endpoints.',
+      '**How does the system keep infrastructure costs minimal?**',
+      'The Auto Scaling Group can be configured with a minimal baseline capacity (even scaling down to 1 spot instance during idle periods) and scaling out dynamically only when incoming inference demand warrants it.',
+      {
+        type: 'cta',
+        text: 'Want to review the actual zero-configuration architecture in action? Check out my Modelflow project or explore the repository on ',
+        linkText: 'GitHub!',
+        linkUrl: 'https://github.com/Sanyamgoyal21/Modelflow'
+      }
     ]
   },
   {
     title: 'Shifting Left: The Case for DevSecOps in Cloud-Native Applications',
-    tag: 'DEVSECOPS // CI-CD',
+    tag: 'DevSecOps · CI/CD',
     id: 'SHIFT_LEFT_SEC',
     date: '2026.05.04',
-    read: '5 MIN READ',
+    read: '5 min read',
     image: '/article2.png',
     summary:
-      'Explore how to integrate automated security tools directly into the CI/CD pipeline, shifting security left to catch vulnerabilities early and increase release speed.',
+      'Integrating security guardrails directly into CI/CD pipelines ensures vulnerabilities and compliance misconfigurations are caught at commit time rather than after reaching production.',
     body: [
-      'As organizations seek to accelerate their software development processes, CI/CD pipelines have emerged as the norm in engineering practices. Nonetheless, rapid software delivery without proper security measures will eventually lead to catastrophic results. Traditionally, security testing is conducted towards the end of the development process, serving as an impenetrable barrier just before production. DevSecOps flips this paradigm on its head by emphasizing shifting left, where security controls are performed at the earliest stage of the CI/CD pipeline.',
-      '### The Challenges of CI/CD Workflows in a DevOps Environment',
-      'In conventional DevOps environments, code is compiled, tested, and then deployed in a staging environment prior to any security evaluation. In cases where significant security threats are identified in either the underlying Docker image or the Kubernetes deployment manifest, the release is put on hold until developers resolve the problem and reinitialize the pipeline.',
-      '### Explanation of the "Shift Left" Approach',
-      'To shift left, you have to embed automated security tools directly within the development process. The code will go through a series of stringent automated compliance tests before it is released into the main branch or production server.',
+      'In the drive toward rapid software delivery, CI/CD automation has become standard practice. However, shipping code fast without embedded security guardrails inevitably leads to catastrophic vulnerabilities. Historically, security audits occurred right before production — acting as a disruptive bottleneck. DevSecOps turns this on its head by "shifting left": embedding automated security validation into the earliest stages of the development cycle.',
+      '### The Flaws of Late-Stage Security Audits',
+      'When security is treated as an afterthought, vulnerabilities in base Docker images or Kubernetes manifests are only discovered days before launch. Developers must halt feature work, roll back deployments, and patch dependencies under severe pressure. Shifting left treats security as code.',
+      '### Implementing Automated Security in CI/CD',
+      'Shifting security left requires automated testing at each stage of the pipeline before code merges to main branches:',
       { type: 'image', src: '/article2.png', alt: 'DevSecOps Shift Left Architecture' },
-      '### Embedding Security Tools in GitLab CI/CD Pipeline',
-      'Creating an effective pipeline requires tools that are designed for this purpose.',
-      '**Image Scanning using Trivy:** Before a Docker image is built and deployed on a container registry, it should be scanned. Trivy is an open-source scanner for detecting vulnerabilities, which works seamlessly with GitLab CI. When the image is created with older versions of libraries containing vulnerabilities, Trivy scans will alert us about them. We can even set up the pipeline such that, in case of finding any \'HIGH\' or \'CRITICAL\' vulnerabilities, the image creation fails.',
-      '**Policy-as-Code using Open Policy Agent (OPA):** While we take care of the security of our application, we need to consider securing the infrastructure as well. In orchestration tools such as Kubernetes (AWS EKS), OPA is a lifesaver for security professionals. We can write our own security policies through OPA. For example, it can automatically deny any deployment of Kubernetes pods as \'root\'.',
+      '### Essential Tooling in GitLab CI & GitHub Actions',
+      'A resilient pipeline leverages purpose-built automated scanners:',
+      '**Vulnerability Scanning with Trivy:** Before container images are pushed to a registry, Trivy scans OS packages and application dependencies for known CVEs. The pipeline can be configured to fail builds automatically if HIGH or CRITICAL severity issues are detected.',
+      '**Policy-as-Code with Open Policy Agent (OPA):** Infrastructure security is just as crucial as application code. Using OPA and Gatekeeper in Kubernetes (such as AWS EKS), policies automatically reject pod definitions attempting to run with root privileges or missing CPU/memory limits.',
       '### Conclusion',
-      'DevSecOps pipeline implementation shifts security challenges from a final challenge to an automated one. Enforcing vulnerability tests and policy-as-code prior to a production release allows engineering teams to reduce their number of critical vulnerabilities while increasing their release speed.',
-      '### FAQ',
-      '**Is the DevSecOps implementation going to require a complete restructure of your current pipeline infrastructure?**',
-      'No, DevSecOps should be introduced incrementally. Start by introducing fast scanners such as Trivy into your current building phase before addressing Kubernetes policies.',
+      'DevSecOps shifts security from a painful gatekeeper to an automated enabler. By catching vulnerabilities in pull requests and enforcing policy-as-code, organizations achieve faster release velocity without sacrificing security.',
+      '### Frequently Asked Questions',
+      '**Does adopting DevSecOps require rebuilding our entire CI/CD setup from scratch?**',
+      'No. DevSecOps should be implemented incrementally. Start with container image scanning (Trivy) and static analysis in your existing build steps before introducing cluster-wide policy-as-code.',
       '**What is Policy-as-Code?**',
-      'This is the process of creating high-level code that represents your policies and security requirements, and using an automated tool such as OPA to test whether those policies are met by your deployment infrastructure.',
-      { 
-        type: 'cta', 
+      'Policy-as-code is the practice of writing compliance rules and security requirements in high-level code, enabling automated verification across your deployment infrastructure.',
+      {
+        type: 'cta',
         parts: [
-          '(Call to Action): Wondering how these tools perform in an actual CI/CD process? Feel free to connect with me via ',
-          { text: 'LinkedIn', url: 'https://www.linkedin.com/in/akshchauhan1' },
-          ' for a chat on cloud native security, or watch my DevSecOps demonstrations on my ',
-          { text: 'GitHub profile!', url: 'https://github.com/AKSHCHAUHAN1' }
+          'Interested in discussing automated CI/CD security and container scanning? Connect with me on ',
+          { text: 'LinkedIn', url: 'https://linkedin.com/in/akshchauhan1' },
+          ' or explore my open-source security configurations on ',
+          { text: 'GitHub!', url: 'https://github.com/AKSHCHAUHAN1' }
         ]
       }
     ]
@@ -264,15 +350,19 @@ export const blogPosts = [
 ];
 
 export const terminalHelp = [
-  ['about', 'Display full about dossier'],
-  ['skills', 'List complete skill matrix'],
-  ['blogs', 'List all blogs with access IDs'],
-  ['blog <id|name>', 'Open blog details by ID or title'],
-  ['projects', 'List all project dossiers'],
-  ['project <id|name>', 'Open project details by ID or name'],
-  ['resume', 'Download tactical dossier'],
-  ['history', 'Show command history'],
-  ['history clear', 'Purge command history'],
-  ['clear', 'Purge terminal output'],
+  ['experience', 'Display internships and professional work history'],
+  ['projects', 'List all deployed projects'],
+  ['project <id|name>', 'Inspect deep technical breakdown of a specific project'],
+  ['skills', 'Output categorized technical skill matrix'],
+  ['education', 'Show academic credentials'],
+  ['certifications', 'List certifications and hackathon achievements'],
+  ['resume', 'Trigger immediate download of resume PDF'],
+  ['contact', 'Display contact channels (Email, Phone, LinkedIn)'],
+  ['hire-me', 'Executive summary of why Aksh is a prime candidate'],
+  ['about', 'Display background and career summary'],
+  ['blogs', 'List engineering articles'],
+  ['blog <id>', 'Read technical article directly in terminal'],
+  ['history', 'Display command history'],
+  ['clear', 'Clear terminal screen'],
   ['exit', 'Close terminal session']
 ];

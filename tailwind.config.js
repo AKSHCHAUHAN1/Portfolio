@@ -1,62 +1,51 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        bg: '#0A0A0A',
-        surface: '#131313',
-        panel: '#1b1c1c',
-        panelHigh: '#2a2a2a',
-        line: '#3e4851',
-        lineStrong: '#88929d',
-        primary: '#93ccff',
-        primaryHot: '#00aaff',
-        mint: '#36ffc4',
-        warning: '#ffb875',
-        danger: '#ff6262',
-        text: '#e4e2e1',
-        muted: '#bec7d3'
+        bg: '#0A0A0F',
+        surface: '#13131A',
+        'surface-elevated': '#1A1A24',
+        'surface-glass': 'rgba(19, 19, 26, 0.7)',
+        border: 'rgba(255, 255, 255, 0.08)',
+        'border-hover': 'rgba(100, 255, 218, 0.25)',
+        accent: '#64FFDA',
+        'accent-dim': 'rgba(100, 255, 218, 0.15)',
+        'accent-glow': 'rgba(100, 255, 218, 0.08)',
+        text: '#F5F5F0',
+        muted: '#9C9CA8',
+        subtle: '#5A5A66'
       },
       fontFamily: {
-        sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif']
+        sans: ['Space Grotesk', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
       },
-      letterSpacing: {
-        hud: '0.2em',
-        tech: '0.08em'
+      borderRadius: {
+        card: '12px',
+        'card-lg': '16px'
       },
       boxShadow: {
-        glow: '0 0 0 1px rgba(147, 204, 255, 0.4), 0 0 18px rgba(147, 204, 255, 0.18)',
-        mint: '0 0 18px rgba(54, 255, 196, 0.2)'
-      },
-      clipPath: {
-        chamfer: 'polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px)',
-        chamferLg: 'polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)'
+        glow: '0 0 20px rgba(100, 255, 218, 0.12)',
+        'glow-lg': '0 0 40px rgba(100, 255, 218, 0.18)',
+        card: '0 8px 32px rgba(0, 0, 0, 0.4)',
+        'card-hover': '0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(100, 255, 218, 0.12)'
       },
       animation: {
-        blink: 'blink 1s step-end infinite'
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
+        'slide-up': 'slideUp 0.6s ease-out forwards'
       },
       keyframes: {
-        blink: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0' }
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
         }
       }
     }
   },
-  corePlugins: {
-    borderRadius: false
-  },
-  plugins: [
-    ({ addUtilities }) => {
-      addUtilities({
-        '.clip-chamfer': {
-          clipPath: 'polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px)'
-        },
-        '.clip-chamfer-lg': {
-          clipPath: 'polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)'
-        }
-      });
-    }
-  ]
+  plugins: []
 };

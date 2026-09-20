@@ -4,11 +4,12 @@ import { PageShell } from '../components/PageShell';
 import { HudPanel } from '../modules/HudPanel';
 import { SectionHeader } from '../modules/SectionHeader';
 import { RadarAnimation } from '../modules/RadarAnimation';
+import { personalInfo } from '../utils/data';
 
 const nodes = [
-  ['NODE_01', 'GITHUB_REPO', Github, 'https://github.com'],
-  ['NODE_02', 'LINKEDIN_NET', Linkedin, 'https://linkedin.com'],
-  ['NODE_03', 'EMAIL_DIRECT', Mail, 'mailto:comms@devops.sys']
+  ['GitHub', 'View my code', Github, personalInfo.github],
+  ['LinkedIn', 'Connect professionally', Linkedin, personalInfo.linkedin],
+  ['Email', personalInfo.email, Mail, `mailto:${personalInfo.email}`]
 ];
 
 export default function Contact() {
@@ -22,11 +23,14 @@ export default function Contact() {
     const message = String(form.get('message') || '').trim();
 
     if (!name || !email.includes('@') || message.length < 8) {
-      setStatus('[WARN] PAYLOAD_VALIDATION_FAILED. CHECK REQUIRED FIELDS.');
+      setStatus('Please complete each field with a valid email address and a short message.');
       return;
     }
 
-    setStatus('[OK] TRANSMISSION_ACCEPTED. RESPONSE_DELTA: RAPID.');
+    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
+    setStatus('Opening your email app with the message pre-filled.');
     event.currentTarget.reset();
   };
 
@@ -35,9 +39,9 @@ export default function Contact() {
       <div className="contact-header-flex">
         <SectionHeader
           sector="06"
-          title="COMMUNICATION CHANNELS"
-          accent="CHANNELS"
-          copy="SYS.COMM // SECURE_CONNECTION_ESTABLISHED. EXPECT RAPID RESPONSE DELTA."
+          title="Let’s build something useful."
+          accent="Contact"
+          copy="I’m open to internship, graduate, and engineering collaboration opportunities."
         />
         <div className="contact-header-radar">
           <RadarAnimation />
@@ -45,30 +49,30 @@ export default function Contact() {
       </div>
       <section className="contact-grid">
         <HudPanel className="contact-form-panel" meta="OP-REQ-007">
-          <h2>INITIATE CONTACT</h2>
-          <p>SECURE CHANNELS ARE OPEN. TRANSMIT PROTOCOLS FOR COLLABORATION, INQUIRIES, OR DEPLOYMENT DIRECTIVES. EXPECT RAPID RESPONSE DELTA.</p>
+          <h2>Send a message</h2>
+          <p>Tell me a little about the role, project, or problem you’re working on.</p>
           <form onSubmit={submit}>
             <label>
-              <span>ID_STRING</span>
-              <input name="name" placeholder="ENTER_NAME" autoComplete="name" />
+              <span>Name</span>
+              <input name="name" placeholder="Your name" autoComplete="name" />
             </label>
             <label>
-              <span>COMM_LINK</span>
-              <input name="email" placeholder="ENTER_EMAIL@SYS.NET" autoComplete="email" />
+              <span>Email</span>
+              <input name="email" placeholder="you@example.com" autoComplete="email" />
             </label>
             <label className="payload">
-              <span>PAYLOAD</span>
-              <textarea name="message" placeholder="ENCODE_MESSAGE_HERE..." rows="5" />
+              <span>Message</span>
+              <textarea name="message" placeholder="How can I help?" rows="5" />
             </label>
-            <button className="btn btn--primary" type="submit"><Send size={16} /> TRANSMIT_DATA</button>
+            <button className="btn btn--primary" type="submit"><Send size={16} /> Send message</button>
           </form>
           {status && <pre className="submit-status">{status}<span className="block-cursor" /></pre>}
         </HudPanel>
         <aside className="contact-side">
           <a className="resume-node" href="/resume.pdf" download>
             <Download size={34} />
-            <strong>EXTRACT_RESUME</strong>
-            <span>PDF_FORMAT // 2.4MB // V.9.2</span>
+            <strong>Download resume</strong>
+            <span>PDF · Experience, projects & skills</span>
           </a>
           {nodes.map(([node, label, Icon, href]) => (
             <a className="link-node" href={href} target="_blank" rel="noreferrer" key={label}>
