@@ -1,23 +1,146 @@
 import { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
-import { personalInfo, projects } from '../utils/data';
+import { personalInfo, projects, experiences, skillCategories, educationHistory, accomplishments } from '../utils/data';
 
-const initialLines = [
-  'aksh@portfolio:~$ status',
-  'Portfolio console ready.',
-  'Type help to see available commands.'
+const WELCOME = [
+  '╔══════════════════════════════════════════════════╗',
+  '║       aksh@portfolio — interactive console       ║',
+  '╚══════════════════════════════════════════════════╝',
+  '',
+  'Portfolio console ready. Type \u001bhelp\u001b to see commands.',
+  ''
 ];
 
-const sectionCommands = {
-  projects: 'work',
-  experience: 'experience',
-  skills: 'skills',
-  education: 'education',
-  contact: 'contact'
-};
+function getSectionInfo(command) {
+  switch (command) {
+    case 'about':
+      return [
+        `┌─ ${personalInfo.name} ──────────────────────────`,
+        `│  Role       : ${personalInfo.role}`,
+        `│  Degree     : ${personalInfo.degree}`,
+        `│  University : ${personalInfo.institution}`,
+        `│  CGPA       : ${personalInfo.cgpa}`,
+        `│  Location   : ${personalInfo.location}`,
+        `│  Email      : ${personalInfo.email}`,
+        `│  GitHub     : ${personalInfo.github}`,
+        `│  LinkedIn   : ${personalInfo.linkedin}`,
+        `└──────────────────────────────────────────────`,
+        '',
+        '  Summary:',
+        `  ${personalInfo.summary}`,
+        ''
+      ];
+
+    case 'projects':
+      return [
+        `┌─ Projects (${projects.length}) ──────────────────────`,
+        ...projects.flatMap((p, i) => [
+          `│`,
+          `│  [0${i + 1}] ${p.name}`,
+          `│       ${p.title}`,
+          `│       Category : ${p.category}`,
+          `│       Stack    : ${p.stack.join(', ')}`,
+          `│       Metrics  : ${p.metrics.map(m => `${m.label}: ${m.value}`).join(' · ')}`,
+          `│       Repo     : ${p.repo}`,
+          `│       ─────`,
+          `│       ${p.about.slice(0, 160)}…`,
+        ]),
+        `│`,
+        `└──────────────────────────────────────────────`,
+        ''
+      ];
+
+    case 'experience':
+      return [
+        `┌─ Experience (${experiences.length}) ─────────────────────`,
+        ...experiences.flatMap((exp) => [
+          `│`,
+          `│  ◆ ${exp.company}`,
+          `│    ${exp.role} · ${exp.period} (${exp.duration})`,
+          `│    ${exp.description.slice(0, 140)}…`,
+          `│    Tech: ${exp.tech.join(', ')}`,
+          `│    Highlights:`,
+          ...exp.points.map(pt => `│      ✓ ${pt.slice(0, 120)}${pt.length > 120 ? '…' : ''}`),
+        ]),
+        `│`,
+        `└──────────────────────────────────────────────`,
+        ''
+      ];
+
+    case 'skills':
+      return [
+        `┌─ Technical Skills ────────────────────────────`,
+        ...skillCategories.flatMap((cat) => [
+          `│`,
+          `│  ▸ ${cat.name}`,
+          ...cat.skills.map(s => `│      • ${s.name}`),
+        ]),
+        `│`,
+        `└──────────────────────────────────────────────`,
+        ''
+      ];
+
+    case 'education':
+      return [
+        `┌─ Education ───────────────────────────────────`,
+        ...educationHistory.flatMap((edu) => [
+          `│`,
+          `│  ◆ ${edu.degree}`,
+          `│    ${edu.institution}`,
+          `│    ${edu.specialization} · ${edu.grade}`,
+          `│    ${edu.period} · ${edu.location}`,
+          `│    Status: ${edu.status}`,
+        ]),
+        `│`,
+        `├─ Achievements ─────────────────────────────────`,
+        ...accomplishments.flatMap((ach) => [
+          `│`,
+          `│  ★ ${ach.title}`,
+          `│    ${ach.issuer} · ${ach.period}`,
+          `│    ${ach.desc.slice(0, 130)}${ach.desc.length > 130 ? '…' : ''}`,
+        ]),
+        `│`,
+        `└──────────────────────────────────────────────`,
+        ''
+      ];
+
+    case 'contact':
+      return [
+        `┌─ Contact ─────────────────────────────────────`,
+        `│`,
+        `│  ✉  Email    : ${personalInfo.email}`,
+        `│  📱 Phone    : ${personalInfo.phone}`,
+        `│  🔗 GitHub   : ${personalInfo.github}`,
+        `│  🔗 LinkedIn : ${personalInfo.linkedin}`,
+        `│  🔗 LeetCode : ${personalInfo.leetcode}`,
+        `│  📍 Location : ${personalInfo.location}`,
+        `│`,
+        `└──────────────────────────────────────────────`,
+        ''
+      ];
+
+    default:
+      return null;
+  }
+}
+
+const HELP_TEXT = [
+  '  Available commands:',
+  '',
+  '  about        — Personal profile & summary',
+  '  projects     — Detailed project case studies',
+  '  experience   — Internships & work history',
+  '  skills       — Technical skill matrix',
+  '  education    — Academics & achievements',
+  '  contact      — Contact channels',
+  '  resume       — Download résumé (opens new tab)',
+  '  clear        — Clear console output',
+  '  exit         — Close console',
+  ''
+];
 
 export function PortfolioConsole({ open, onClose, dark }) {
-  const [lines, setLines] = useState(initialLines);
+  const [lines, setLines] = useState([...WELCOME]);
   const [input, setInput] = useState('');
   const inputRef = useRef(null);
   const outputRef = useRef(null);
@@ -36,6 +159,14 @@ export function PortfolioConsole({ open, onClose, dark }) {
     if (open && outputRef.current) outputRef.current.scrollTop = outputRef.current.scrollHeight;
   }, [lines, open]);
 
+  // Reset lines when console closes so it starts fresh next time
+  useEffect(() => {
+    if (!open) {
+      setLines([...WELCOME]);
+      setInput('');
+    }
+  }, [open]);
+
   if (!open) return null;
 
   const run = (event) => {
@@ -43,19 +174,17 @@ export function PortfolioConsole({ open, onClose, dark }) {
     const command = input.trim().toLowerCase();
     const next = [`aksh@portfolio:~$ ${input.trim()}`];
 
+    if (!command) {
+      setLines((current) => [...current, '']);
+      setInput('');
+      return;
+    }
+
     if (command === 'help') {
-      next.push('Commands: projects, experience, skills, education, contact, resume, about, clear, exit');
-    } else if (command === 'about') {
-      next.push(`${personalInfo.name} — ${personalInfo.role}`, personalInfo.summary);
+      next.push(...HELP_TEXT);
     } else if (command === 'resume') {
-      next.push('Opening résumé…');
+      next.push('  ↗ Opening résumé in new tab…', '');
       window.open(personalInfo.resumeUrl, '_blank', 'noopener,noreferrer');
-    } else if (command === 'projects') {
-      next.push(...projects.map((project, index) => `${index + 1}. ${project.name} — ${project.category}`));
-      document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' });
-    } else if (sectionCommands[command]) {
-      next.push(`Opening ${command}…`);
-      document.querySelector(`#${sectionCommands[command]}`)?.scrollIntoView({ behavior: 'smooth' });
     } else if (command === 'clear') {
       setLines([]);
       setInput('');
@@ -63,8 +192,13 @@ export function PortfolioConsole({ open, onClose, dark }) {
     } else if (command === 'exit') {
       onClose();
       return;
-    } else if (command) {
-      next.push(`Command not found: ${command}. Type help.`);
+    } else {
+      const info = getSectionInfo(command);
+      if (info) {
+        next.push('', ...info);
+      } else {
+        next.push(`  Command not found: "${command}". Type help for available commands.`, '');
+      }
     }
 
     setLines((current) => [...current, '', ...next]);
