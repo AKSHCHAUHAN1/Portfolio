@@ -2800,3 +2800,793 @@ html.vp-dark-root, html.vp-dark-root body { background:#060914; }
 
 /* Skills now use the same light, glass-and-teal language as the surrounding sections. */
 .vp-section-intro h2 { overflow:visible; }.vp-section-intro h2 > span { display:inline-block; }.vp-skills { background:linear-gradient(135deg,#edf8f7 0%,#f7fbfb 50%,#eff7f8 100%); border-top:1px solid #dfefed; border-bottom:1px solid #dfefed; }.vp-skills .vp-section-intro h2 { color:#102f38; }.vp-skills .vp-section-intro > p { color:#58737b; }.vp-skills .vp-eyebrow { color:#0f766e; }.vp-skills .vp-eyebrow span { background:#0f766e; box-shadow:0 0 0 4px rgba(15,118,110,.1); }.vp-skill-card { min-height:286px; border-color:#d6e8e7; background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(243,250,249,.92)); box-shadow:0 12px 27px rgba(10,95,92,.07),inset 0 1px rgba(255,255,255,.95); }.vp-skill-card:hover { border-color:#7ec7bf; background:linear-gradient(145deg,#fff,#e9f7f5); box-shadow:0 22px 36px rgba(10,95,92,.13),inset 0 1px #fff; }.vp-skill-card > div { color:#0f766e; }.vp-skill-card > div span { color:#14807a; }.vp-skill-card h3 { color:#163e47; }.vp-skill-card li { color:#5c747b; }.vp-skill-card:hover li { color:#2d5f65; }.vp-dark .vp-skills { background:linear-gradient(135deg,#071d23,#09252a 55%,#06171d); border-color:rgba(94,234,212,.12); }.vp-dark .vp-skills .vp-section-intro h2 { color:#edfdfa; }.vp-dark .vp-skills .vp-section-intro > p { color:#abc9c4; }.vp-dark .vp-skills .vp-eyebrow { color:#6ee7d7; }.vp-dark .vp-skill-card { border-color:rgba(94,234,212,.17); background:linear-gradient(145deg,rgba(30,82,86,.4),rgba(7,29,35,.78)); }.vp-dark .vp-skill-card:hover { border-color:rgba(126,240,220,.47); background:linear-gradient(145deg,rgba(43,111,111,.5),rgba(8,41,46,.85)); }.vp-dark .vp-skill-card > div,.vp-dark .vp-skill-card > div span { color:#79e7d8; }.vp-dark .vp-skill-card h3 { color:#effffa; }.vp-dark .vp-skill-card li { color:#b1d2cb; }.vp-dark .vp-skill-card:hover li { color:#e2fff9; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   macOS / iOS Liquid Glass Material System
+   Reference: iOS 18 Control Center — frosted dark panels with
+   heavy backdrop-blur, thin luminous border, specular top-edge
+   highlight, rounded pill shapes, and content refraction.
+   Applied to every non-button container element.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── LIGHT MODE LIQUID GLASS ── */
+
+/* Navbar */
+.vp-nav {
+  background: linear-gradient(135deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.26) 50%, rgba(255,255,255,.36) 100%) !important;
+  border-color: rgba(255,255,255,.65) !important;
+  backdrop-filter: blur(48px) saturate(210%) contrast(106%) brightness(104%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(210%) contrast(106%) brightness(104%) !important;
+  box-shadow:
+    0 12px 40px -6px rgba(10,40,46,.1),
+    0 2px 8px rgba(10,40,46,.04),
+    inset 0 1.5px 1px rgba(255,255,255,.95),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.04) !important;
+}
+.vp-nav::before {
+  background: linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(255,255,255,.18) 35%, rgba(255,255,255,0) 65%, rgba(255,255,255,.25) 100%) !important;
+}
+.vp-nav::after {
+  background: linear-gradient(180deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 100%) !important;
+}
+.vp-nav--scrolled {
+  background: linear-gradient(135deg, rgba(255,255,255,.28) 0%, rgba(255,255,255,.14) 50%, rgba(255,255,255,.22) 100%) !important;
+  border-color: rgba(255,255,255,.48) !important;
+  backdrop-filter: blur(56px) saturate(240%) contrast(108%) brightness(106%) !important;
+  -webkit-backdrop-filter: blur(56px) saturate(240%) contrast(108%) brightness(106%) !important;
+  box-shadow:
+    0 16px 48px -4px rgba(8,42,48,.16),
+    0 4px 12px rgba(8,42,48,.06),
+    0 0 0 0.5px rgba(255,255,255,.5),
+    inset 0 1.5px 1px rgba(255,255,255,.85),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.06) !important;
+}
+
+/* Nav links pill container */
+.vp-nav-links {
+  background: transparent !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 0;
+  box-shadow: none;
+}
+.vp-nav-links a.active {
+  background: rgba(255,255,255,.72) !important;
+  box-shadow: 0 2px 10px rgba(15,118,110,.12), inset 0 1px 1px rgba(255,255,255,.9) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Proof / stats grid */
+.vp-proof-grid {
+  background: rgba(255,255,255,.45) !important;
+  backdrop-filter: blur(40px) saturate(190%) brightness(106%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(190%) brightness(106%) !important;
+  border-color: rgba(255,255,255,.62) !important;
+  box-shadow:
+    0 14px 42px rgba(56,74,117,.08),
+    inset 0 1.5px 1px rgba(255,255,255,.9),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.03) !important;
+}
+.vp-proof-grid > div { border-color: rgba(255,255,255,.45) !important; }
+
+/* Project cards */
+.vp-project-card {
+  background: rgba(255,255,255,.48) !important;
+  backdrop-filter: blur(36px) saturate(180%) brightness(105%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(180%) brightness(105%) !important;
+  border-color: rgba(255,255,255,.58) !important;
+  box-shadow:
+    0 16px 48px rgba(47,66,110,.08),
+    inset 0 1.5px 1px rgba(255,255,255,.88),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.03) !important;
+}
+.vp-project-card:hover {
+  border-color: rgba(15,118,110,.28) !important;
+  box-shadow:
+    0 24px 56px rgba(47,66,110,.14),
+    0 0 0 0.5px rgba(15,118,110,.12),
+    inset 0 1.5px 1px rgba(255,255,255,.9) !important;
+}
+
+/* Project metric cells */
+.vp-project-metric-grid > div {
+  background: rgba(255,255,255,.4) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border-color: rgba(255,255,255,.5) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.75), inset 0 -0.5px 0.5px rgba(0,0,0,.02) !important;
+}
+
+/* Preview bar */
+.vp-preview-bar {
+  background: rgba(244,246,250,.55) !important;
+  backdrop-filter: blur(16px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(170%) !important;
+  border-color: rgba(255,255,255,.45) !important;
+}
+
+/* Experience cards */
+.vp-experience-card {
+  background: rgba(255,255,255,.45) !important;
+  backdrop-filter: blur(36px) saturate(180%) brightness(104%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(180%) brightness(104%) !important;
+  border-color: rgba(255,255,255,.55) !important;
+  box-shadow:
+    0 14px 38px rgba(50,66,110,.07),
+    inset 0 1.5px 1px rgba(255,255,255,.88),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.03) !important;
+}
+.vp-experience-card:hover {
+  border-color: rgba(15,118,110,.3) !important;
+  box-shadow:
+    0 24px 50px rgba(50,66,110,.13),
+    inset 0 1.5px 1px rgba(255,255,255,.9) !important;
+}
+
+/* Experience icon badge */
+.vp-experience-icon {
+  background: rgba(238,234,255,.5) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255,255,255,.5);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.7);
+}
+
+/* Skill cards (light mode override since skills section has its own bg) */
+.vp-skill-card {
+  background: rgba(255,255,255,.42) !important;
+  backdrop-filter: blur(36px) saturate(180%) brightness(106%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(180%) brightness(106%) !important;
+  border-color: rgba(255,255,255,.5) !important;
+  box-shadow:
+    0 12px 32px rgba(10,95,92,.06),
+    inset 0 1.5px 1px rgba(255,255,255,.85),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.03) !important;
+}
+.vp-skill-card:hover {
+  background: rgba(255,255,255,.58) !important;
+  border-color: rgba(15,118,110,.3) !important;
+  box-shadow:
+    0 22px 44px rgba(10,95,92,.12),
+    inset 0 1.5px 1px rgba(255,255,255,.92) !important;
+}
+
+/* Education / achievement lists */
+.vp-education-list,
+.vp-achievement-list {
+  background: rgba(255,255,255,.42) !important;
+  backdrop-filter: blur(36px) saturate(180%) brightness(105%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(180%) brightness(105%) !important;
+  border-color: rgba(255,255,255,.55) !important;
+  box-shadow:
+    0 12px 36px rgba(50,66,110,.06),
+    inset 0 1.5px 1px rgba(255,255,255,.85),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.03) !important;
+}
+.vp-education-list article,
+.vp-achievement-list article { border-color: rgba(255,255,255,.35) !important; }
+
+/* Contact card */
+.vp-contact-card {
+  backdrop-filter: blur(32px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+  box-shadow:
+    0 28px 60px rgba(74,76,215,.2),
+    inset 0 1.5px 1px rgba(255,255,255,.35),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.12) !important;
+}
+
+/* Portrait panel */
+.vp-portrait-panel {
+  background: rgba(231,244,242,.55) !important;
+  backdrop-filter: blur(32px) saturate(180%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(108%) !important;
+  border-color: rgba(255,255,255,.5) !important;
+  box-shadow:
+    0 20px 50px rgba(18,82,94,.12),
+    inset 0 1.5px 1px rgba(255,255,255,.85),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.04) !important;
+}
+.vp-portrait-caption {
+  background: rgba(248,253,252,.5) !important;
+  backdrop-filter: blur(24px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(170%) !important;
+  border-top: 1px solid rgba(255,255,255,.45);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.7);
+}
+
+/* Profile card (hero area) */
+.vp-profile-card {
+  background: rgba(255,255,255,.42) !important;
+  backdrop-filter: blur(28px) saturate(180%) brightness(106%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(106%) !important;
+  border-color: rgba(255,255,255,.55) !important;
+  box-shadow:
+    0 10px 28px rgba(61,77,116,.08),
+    inset 0 1px 1px rgba(255,255,255,.85) !important;
+}
+
+/* System window (hero animation) */
+.vp-system-window {
+  background: rgba(255,255,255,.38) !important;
+  backdrop-filter: blur(40px) saturate(190%) brightness(106%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(190%) brightness(106%) !important;
+  border-color: rgba(255,255,255,.55) !important;
+  box-shadow:
+    0 25px 70px -24px rgba(64,73,130,.18),
+    inset 0 1.5px 1px rgba(255,255,255,.88),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.04) !important;
+}
+
+/* Console overlay */
+.vp-console:not(.vp-console--dark) {
+  background: rgba(248,255,254,.55) !important;
+  backdrop-filter: blur(44px) saturate(200%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(44px) saturate(200%) brightness(108%) !important;
+  border-color: rgba(255,255,255,.6) !important;
+  box-shadow:
+    0 28px 90px rgba(8,69,72,.18),
+    0 0 0 4px rgba(211,245,240,.3),
+    inset 0 1.5px 1px rgba(255,255,255,.85) !important;
+}
+.vp-console:not(.vp-console--dark) header {
+  background: rgba(234,248,246,.45) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(255,255,255,.4) !important;
+}
+.vp-console:not(.vp-console--dark) form {
+  background: rgba(239,250,249,.45) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(255,255,255,.4) !important;
+}
+
+/* Mobile menu */
+.vp-mobile-menu {
+  background: rgba(255,255,255,.42) !important;
+  backdrop-filter: blur(44px) saturate(210%) brightness(106%) !important;
+  -webkit-backdrop-filter: blur(44px) saturate(210%) brightness(106%) !important;
+  border-color: rgba(255,255,255,.6) !important;
+  box-shadow:
+    0 20px 48px rgba(15,35,45,.12),
+    inset 0 1.5px 1px rgba(255,255,255,.88) !important;
+}
+.vp-mobile-menu a { border-color: rgba(255,255,255,.3) !important; }
+
+/* Tech symbol badges */
+.vp-tech-symbols span {
+  background: rgba(255,255,255,.38) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border-color: rgba(255,255,255,.48) !important;
+  box-shadow:
+    0 4px 12px rgba(12,86,83,.05),
+    inset 0 1px 1px rgba(255,255,255,.75) !important;
+}
+
+/* Footer */
+.vp-footer {
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+/* Section background adjustments for glass visibility */
+.vp-work { background: linear-gradient(180deg, rgba(237,242,251,.4), rgba(249,250,254,.55)) !important; }
+.vp-experience { background: rgba(255,255,255,.35) !important; }
+.vp-education { background: rgba(248,250,252,.35) !important; }
+
+/* Theme toggle (non-button glass orb) */
+.vp-theme-toggle {
+  background: rgba(255,255,255,.38) !important;
+  backdrop-filter: blur(16px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(170%) !important;
+  border-color: rgba(255,255,255,.55) !important;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.04),
+    inset 0 1px 1px rgba(255,255,255,.8) !important;
+}
+
+/* Window nodes (hero diagram) */
+.vp-node {
+  background: rgba(255,255,255,.42) !important;
+  backdrop-filter: blur(20px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  border-color: rgba(255,255,255,.52) !important;
+  box-shadow:
+    0 10px 24px rgba(83,98,138,.08),
+    inset 0 1px 1px rgba(255,255,255,.85) !important;
+}
+
+/* Card number badge */
+.vp-card-number {
+  background: rgba(255,255,255,.35);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border-color: rgba(255,255,255,.45) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.6);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   DARK MODE LIQUID GLASS
+   Matches iOS Control Center: deep dark frosted panels with
+   visible content refraction, teal-accented specular rim light,
+   and heavy saturation boost.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Dark Navbar */
+.vp-dark .vp-nav {
+  background: linear-gradient(135deg, rgba(12,28,34,.38) 0%, rgba(6,18,22,.25) 50%, rgba(9,22,28,.32) 100%) !important;
+  border-color: rgba(94,234,212,.18) !important;
+  backdrop-filter: blur(48px) saturate(220%) contrast(108%) brightness(112%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(220%) contrast(108%) brightness(112%) !important;
+  box-shadow:
+    0 14px 42px rgba(0,0,0,.5),
+    0 2px 8px rgba(0,0,0,.3),
+    inset 0 1px 1px rgba(255,255,255,.18),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.4) !important;
+}
+.vp-dark .vp-nav::before {
+  background: linear-gradient(180deg, rgba(94,234,212,.28) 0%, rgba(255,255,255,.06) 30%, rgba(255,255,255,0) 60%, rgba(94,234,212,.22) 100%) !important;
+}
+.vp-dark .vp-nav::after {
+  background: linear-gradient(180deg, rgba(94,234,212,.14) 0%, rgba(255,255,255,0) 100%) !important;
+}
+.vp-dark .vp-nav--scrolled {
+  background: linear-gradient(135deg, rgba(8,20,25,.3) 0%, rgba(4,12,16,.18) 50%, rgba(6,16,20,.25) 100%) !important;
+  border-color: rgba(94,234,212,.28) !important;
+  backdrop-filter: blur(56px) saturate(260%) contrast(112%) brightness(118%) !important;
+  -webkit-backdrop-filter: blur(56px) saturate(260%) contrast(112%) brightness(118%) !important;
+  box-shadow:
+    0 18px 52px rgba(0,0,0,.65),
+    0 6px 16px rgba(0,0,0,.4),
+    0 0 0 0.5px rgba(94,234,212,.18),
+    inset 0 1.5px 1px rgba(255,255,255,.22),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.5) !important;
+}
+
+/* Dark nav links */
+.vp-dark .vp-nav-links {
+  background: transparent !important;
+  border: 0;
+  box-shadow: none;
+}
+.vp-dark .vp-nav-links a,
+.vp-dark .vp-nav-links a.active { color: #e9fffa !important; }
+.vp-dark .vp-nav-links a.active {
+  background: rgba(45,212,191,.16) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.12) !important;
+}
+
+/* Dark proof grid */
+.vp-dark .vp-proof-grid {
+  background: rgba(13,19,38,.4) !important;
+  backdrop-filter: blur(40px) saturate(200%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(110%) !important;
+  border-color: rgba(94,234,212,.14) !important;
+  box-shadow:
+    0 16px 48px rgba(0,0,0,.25),
+    inset 0 1px 1px rgba(255,255,255,.1),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.3) !important;
+}
+.vp-dark .vp-proof-grid > div { border-color: rgba(94,234,212,.08) !important; }
+
+/* Dark project cards */
+.vp-dark .vp-project-card {
+  background: rgba(16,24,42,.4) !important;
+  backdrop-filter: blur(36px) saturate(190%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(190%) brightness(108%) !important;
+  border-color: rgba(94,234,212,.14) !important;
+  box-shadow:
+    0 18px 48px rgba(0,0,0,.22),
+    inset 0 1px 1px rgba(255,255,255,.08),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.3) !important;
+}
+.vp-dark .vp-project-card:hover {
+  border-color: rgba(94,234,212,.32) !important;
+  box-shadow:
+    0 28px 60px rgba(0,0,0,.3),
+    0 0 0 0.5px rgba(94,234,212,.15),
+    inset 0 1px 1px rgba(255,255,255,.12) !important;
+}
+
+/* Dark project metrics */
+.vp-dark .vp-project-metric-grid > div {
+  background: rgba(255,255,255,.04) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border-color: rgba(94,234,212,.1) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.06) !important;
+}
+
+/* Dark preview bar */
+.vp-dark .vp-preview-bar {
+  background: rgba(11,17,35,.45) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(94,234,212,.08) !important;
+}
+
+/* Dark experience cards */
+.vp-dark .vp-experience-card {
+  background: rgba(16,24,42,.38) !important;
+  backdrop-filter: blur(36px) saturate(190%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(190%) brightness(108%) !important;
+  border-color: rgba(94,234,212,.14) !important;
+  box-shadow:
+    0 14px 42px rgba(0,0,0,.2),
+    inset 0 1px 1px rgba(255,255,255,.08),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.3) !important;
+}
+.vp-dark .vp-experience-card:hover {
+  border-color: rgba(94,234,212,.3) !important;
+  box-shadow:
+    0 24px 52px rgba(0,0,0,.28),
+    inset 0 1px 1px rgba(255,255,255,.12) !important;
+}
+
+/* Dark experience icon */
+.vp-dark .vp-experience-icon {
+  background: rgba(45,212,191,.1) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(94,234,212,.15) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.06) !important;
+}
+
+/* Dark skill cards */
+.vp-dark .vp-skill-card {
+  background: rgba(20,60,65,.3) !important;
+  backdrop-filter: blur(36px) saturate(200%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(200%) brightness(110%) !important;
+  border-color: rgba(94,234,212,.16) !important;
+  box-shadow:
+    0 12px 36px rgba(0,0,0,.18),
+    inset 0 1px 1px rgba(255,255,255,.08),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.3) !important;
+}
+.vp-dark .vp-skill-card:hover {
+  background: rgba(30,85,88,.38) !important;
+  border-color: rgba(94,234,212,.38) !important;
+  box-shadow:
+    0 22px 48px rgba(0,0,0,.25),
+    inset 0 1px 1px rgba(255,255,255,.12) !important;
+}
+
+/* Dark education / achievement */
+.vp-dark .vp-education-list,
+.vp-dark .vp-achievement-list {
+  background: rgba(13,19,38,.38) !important;
+  backdrop-filter: blur(36px) saturate(190%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(190%) brightness(108%) !important;
+  border-color: rgba(94,234,212,.14) !important;
+  box-shadow:
+    0 14px 40px rgba(0,0,0,.2),
+    inset 0 1px 1px rgba(255,255,255,.08) !important;
+}
+.vp-dark .vp-education-list article,
+.vp-dark .vp-achievement-list article { border-color: rgba(94,234,212,.08) !important; }
+
+/* Dark contact card */
+.vp-dark .vp-contact-card {
+  background: rgba(12,59,68,.45) !important;
+  backdrop-filter: blur(36px) saturate(190%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(190%) brightness(108%) !important;
+  border: 1px solid rgba(94,234,212,.18);
+  box-shadow:
+    0 28px 60px rgba(0,0,0,.35),
+    inset 0 1px 1px rgba(255,255,255,.12),
+    inset 0 -0.5px 0.5px rgba(0,0,0,.4) !important;
+}
+
+/* Dark portrait */
+.vp-dark .vp-portrait-panel {
+  background: rgba(11,41,47,.4) !important;
+  backdrop-filter: blur(32px) saturate(190%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(190%) brightness(108%) !important;
+  border-color: rgba(94,234,212,.18) !important;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.4),
+    inset 0 1px 1px rgba(255,255,255,.1) !important;
+}
+.vp-dark .vp-portrait-caption {
+  background: rgba(10,34,40,.4) !important;
+  backdrop-filter: blur(20px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  border-color: rgba(94,234,212,.1) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.06) !important;
+}
+
+/* Dark profile card */
+.vp-dark .vp-profile-card {
+  background: rgba(255,255,255,.05) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-color: rgba(94,234,212,.16) !important;
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.2),
+    inset 0 1px 1px rgba(255,255,255,.08) !important;
+}
+
+/* Dark system window */
+.vp-dark .vp-system-window {
+  background: rgba(13,19,38,.35) !important;
+  backdrop-filter: blur(40px) saturate(200%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(108%) !important;
+  border-color: rgba(94,234,212,.14) !important;
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.35),
+    inset 0 1px 1px rgba(255,255,255,.08) !important;
+}
+.vp-dark .vp-window-bar {
+  background: rgba(12,18,37,.4) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(94,234,212,.08) !important;
+}
+
+/* Dark console */
+.vp-console--dark {
+  background: rgba(6,26,30,.45) !important;
+  backdrop-filter: blur(44px) saturate(210%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(44px) saturate(210%) brightness(110%) !important;
+  border-color: rgba(94,234,212,.22) !important;
+  box-shadow:
+    0 28px 90px rgba(0,0,0,.4),
+    0 0 0 4px rgba(94,234,212,.08),
+    inset 0 1px 1px rgba(255,255,255,.1) !important;
+}
+.vp-console--dark header {
+  background: rgba(9,36,40,.4) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(94,234,212,.12) !important;
+}
+.vp-console--dark form {
+  background: rgba(9,32,36,.4) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-color: rgba(94,234,212,.12) !important;
+}
+
+/* Dark mobile menu */
+.vp-dark .vp-mobile-menu {
+  background: rgba(12,18,37,.4) !important;
+  backdrop-filter: blur(44px) saturate(210%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(44px) saturate(210%) brightness(108%) !important;
+  border-color: rgba(94,234,212,.16) !important;
+  box-shadow:
+    0 20px 48px rgba(0,0,0,.35),
+    inset 0 1px 1px rgba(255,255,255,.08) !important;
+}
+.vp-dark .vp-mobile-menu a { border-color: rgba(94,234,212,.08) !important; }
+
+/* Dark tech symbols */
+.vp-dark .vp-tech-symbols span {
+  background: rgba(255,255,255,.04) !important;
+  backdrop-filter: blur(12px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(160%) !important;
+  border-color: rgba(94,234,212,.14) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.06) !important;
+}
+
+/* Dark theme toggle */
+.vp-dark .vp-theme-toggle {
+  background: rgba(255,255,255,.06) !important;
+  backdrop-filter: blur(16px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(170%) !important;
+  border-color: rgba(94,234,212,.14) !important;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.3),
+    inset 0 1px 1px rgba(255,255,255,.08) !important;
+}
+
+/* Dark nodes */
+.vp-dark .vp-node {
+  background: rgba(22,31,60,.4) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-color: rgba(94,234,212,.12) !important;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.2),
+    inset 0 1px 1px rgba(255,255,255,.06) !important;
+}
+
+/* Dark card number */
+.vp-dark .vp-card-number {
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(94,234,212,.12) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.05);
+}
+
+/* Dark section backgrounds — more transparent for glass visibility */
+.vp-dark .vp-work { background: linear-gradient(180deg, rgba(12,19,40,.35), rgba(9,14,29,.45)) !important; }
+.vp-dark .vp-experience { background: rgba(8,12,24,.3) !important; }
+.vp-dark .vp-education { background: rgba(8,12,24,.3) !important; }
+.vp-dark .vp-contact { background: linear-gradient(180deg, rgba(6,16,22,.35), rgba(10,32,38,.4)) !important; }
+
+/* Dark folder elements */
+.vp-dark .vp-folder-page {
+  background: rgba(11,40,45,.4) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-color: rgba(94,234,212,.16) !important;
+  box-shadow:
+    0 16px 28px rgba(0,0,0,.35),
+    inset 0 1px rgba(255,255,255,.06) !important;
+}
+.vp-dark .vp-folder-page-bar {
+  background: rgba(13,49,54,.4) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(94,234,212,.1) !important;
+}
+
+/* ── Larger portrait-card name ── */
+.vp-portrait-caption span { font-size:15px; font-weight:700; }
+.vp-portrait-caption strong { font-size:22px; }
+
+/* ── Larger navbar brand ── */
+.vp-brand { font-size:16px !important; min-width:200px !important; gap:10px !important; }
+.vp-brand span { width:36px !important; height:36px !important; font-size:12px !important; border-radius:10px !important; }
+.vp-brand strong { font-size:16px !important; }
+.vp-nav { min-height:67px !important; padding:8px 14px 8px 20px !important; }
+.vp-nav--scrolled { min-height:57px !important; padding:6px 10px 6px 16px !important; }
+.vp-nav-links a { font-size:14px !important; padding:7px 15px !important; }
+.vp-nav-resume, .vp-nav-contact { font-size:14px !important; }
+
+/* ── Mobile responsive adjustments ── */
+@media (max-width:750px) {
+  .vp-nav { min-height:58px !important; padding:7px 10px 7px 14px !important; }
+  .vp-nav--scrolled { min-height:52px !important; padding:5px 9px 5px 13px !important; }
+  .vp-brand span { width:32px !important; height:32px !important; font-size:11px !important; }
+  .vp-brand strong { font-size:14px !important; }
+  .vp-portrait-caption span { font-size:13px; }
+  .vp-portrait-caption strong { font-size:19px; }
+}
+@media (max-width:470px) {
+  .vp-brand strong { font-size:13px !important; }
+  .vp-portrait-caption span { font-size:12px; }
+  .vp-portrait-caption strong { font-size:17px; }
+}
+
+/* Keep the floating navbar readable against both light and dark hero content. */
+.voxel-portfolio .vp-nav,
+.voxel-portfolio .vp-nav--scrolled {
+  background: rgba(255,255,255,.58) !important;
+  backdrop-filter: blur(48px) saturate(210%) contrast(106%) brightness(104%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(210%) contrast(106%) brightness(104%) !important;
+}
+.voxel-portfolio .vp-nav-links,
+.voxel-portfolio.vp-dark .vp-nav-links {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.voxel-portfolio .vp-nav-links a {
+  color: #25364c !important;
+}
+.voxel-portfolio .vp-nav-links a.active {
+  color: #183f44 !important;
+  background: rgba(220,243,239,.95) !important;
+  box-shadow: 0 2px 8px rgba(15,118,110,.14) !important;
+}
+.voxel-portfolio.vp-dark .vp-nav,
+.voxel-portfolio.vp-dark .vp-nav--scrolled {
+  background: rgba(7,25,30,.46) !important;
+  backdrop-filter: blur(48px) saturate(220%) contrast(108%) brightness(112%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(220%) contrast(108%) brightness(112%) !important;
+}
+.voxel-portfolio.vp-dark .vp-nav-links a,
+.voxel-portfolio.vp-dark .vp-nav-links a.active {
+  color: #e9fffa !important;
+}
+.voxel-portfolio.vp-dark .vp-nav-links a.active {
+  background: rgba(45,212,191,.2) !important;
+}
+
+/* Dark theme balance: neutral surfaces, restrained mint accents, and warm actions. */
+.voxel-portfolio.vp-dark {
+  --vp-violet: #8bcfc4;
+  --vp-indigo: #9bb9c9;
+  --vp-cyan: #e8c98e;
+  background: linear-gradient(180deg, #091017 0%, #0d151d 46%, #090f15 100%) !important;
+}
+.voxel-portfolio.vp-dark .vp-glow-one { background: rgba(139,207,196,.1); }
+.voxel-portfolio.vp-dark .vp-glow-two { background: rgba(155,185,201,.08); }
+.voxel-portfolio.vp-dark .vp-glow-three { background: rgba(232,201,142,.06); }
+.voxel-portfolio.vp-dark .vp-hero h1 span,
+.voxel-portfolio.vp-dark .vp-contact-card h2 span { color: #a8d8d0 !important; }
+.voxel-portfolio.vp-dark .vp-eyebrow,
+.voxel-portfolio.vp-dark .vp-skills .vp-eyebrow { color: #a8d8d0 !important; }
+.voxel-portfolio.vp-dark .vp-eyebrow span,
+.voxel-portfolio.vp-dark .vp-skills .vp-eyebrow span { background: #a8d8d0 !important; box-shadow: 0 0 0 4px rgba(168,216,208,.12); }
+.voxel-portfolio.vp-dark .vp-button-primary,
+.voxel-portfolio.vp-dark .vp-nav-contact {
+  color: #182226 !important;
+  background: #f1ead8 !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,.24);
+  text-shadow: none;
+}
+.voxel-portfolio.vp-dark .vp-button-primary:hover,
+.voxel-portfolio.vp-dark .vp-nav-contact:hover { background: #f7ddb0 !important; }
+.voxel-portfolio.vp-dark .vp-skills {
+  background: linear-gradient(145deg, #0b131b, #111b25 58%, #0a1118) !important;
+  border-color: rgba(168,216,208,.1);
+}
+.voxel-portfolio.vp-dark .vp-skill-card {
+  border-color: rgba(168,216,208,.16);
+  background: linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+}
+.voxel-portfolio.vp-dark .vp-skill-card:hover { background: rgba(168,216,208,.1); }
+.voxel-portfolio.vp-dark .vp-contact-card {
+  background: linear-gradient(135deg, #18242d, #1b2b32) !important;
+  box-shadow: 0 25px 55px rgba(0,0,0,.3);
+}
+.voxel-portfolio.vp-dark .vp-contact-card .vp-button-primary {
+  color: #182226 !important;
+  -webkit-text-fill-color: #182226 !important;
+  background: #f1ead8 !important;
+}
+.voxel-portfolio.vp-dark .vp-contact-card .vp-button-primary svg {
+  color: #182226 !important;
+  stroke: currentColor;
+}
+
+/* Glass action treatment and final dark-theme contrast corrections. */
+.voxel-portfolio .vp-nav-resume {
+  border-color: rgba(255,255,255,.62) !important;
+  background: rgba(255,255,255,.38) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.72), 0 5px 14px rgba(18,59,56,.08);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+.voxel-portfolio .vp-nav-resume:hover {
+  background: rgba(255,255,255,.68) !important;
+  border-color: rgba(15,118,110,.34) !important;
+  transform: translateY(-1px);
+}
+.voxel-portfolio.vp-dark .vp-nav {
+  background: linear-gradient(135deg, rgba(35,55,64,.7), rgba(8,19,26,.44) 52%, rgba(25,41,49,.62)) !important;
+  border-color: rgba(168,216,208,.28) !important;
+  box-shadow:
+    0 18px 52px rgba(0,0,0,.48),
+    0 0 0 1px rgba(168,216,208,.06),
+    inset 0 1.5px 1px rgba(255,255,255,.2),
+    inset 0 -1px 1px rgba(0,0,0,.32) !important;
+  backdrop-filter: blur(52px) saturate(185%) contrast(108%) brightness(112%) !important;
+  -webkit-backdrop-filter: blur(52px) saturate(185%) contrast(108%) brightness(112%) !important;
+}
+.voxel-portfolio.vp-dark .vp-nav-resume {
+  border-color: rgba(168,216,208,.3) !important;
+  color: #eef7f4 !important;
+  background: rgba(255,255,255,.08) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.16), 0 5px 16px rgba(0,0,0,.18);
+}
+.voxel-portfolio.vp-dark .vp-nav-resume:hover {
+  color: #182226 !important;
+  background: rgba(232,201,142,.9) !important;
+  border-color: rgba(232,201,142,.7) !important;
+}
+.vp-project-list { gap: 26px; }
+.vp-project-reveal {
+  position: relative;
+  top: auto;
+  z-index: auto;
+  display: block;
+  align-self: start;
+  min-width: 0;
+}
+.vp-project-reveal:nth-child(2),
+.vp-project-reveal:nth-child(3) { z-index: auto; }
+.vp-project-card { will-change: transform, opacity; backface-visibility: hidden; }
+.voxel-portfolio { overflow: clip; }
+@media (max-width: 750px) {
+  .vp-project-reveal { top: auto; min-height: 0; }
+}

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useAnimation, useInView, useScroll, useSpring } from 'framer-motion';
 import {
   ArrowRight, ArrowUpRight, BriefcaseBusiness, Check,
   Braces, Cloud, Code2, Database, Download, Github, GitBranch, GraduationCap, Linkedin, Mail,
@@ -77,6 +77,75 @@ function TechSymbols({ tech, className = '' }) {
   );
 }
 
+function ProjectCard({ project, index }) {
+  const revealRef = useRef(null);
+  const controls = useAnimation();
+  const isInView = useInView(revealRef, { amount: .2 });
+  const [scrollDirection, setScrollDirection] = useState('down');
+  const fromLeft = index % 2 === 0;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollDirection(window.scrollY > (handleScroll.previousY || 0) ? 'down' : 'up');
+      handleScroll.previousY = window.scrollY;
+    };
+    handleScroll.previousY = window.scrollY;
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    controls.start(isInView ? 'visible' : scrollDirection === 'up' ? 'hiddenUp' : 'hiddenDown');
+  }, [controls, isInView, scrollDirection]);
+
+  return (
+    <div ref={revealRef} className="vp-project-reveal">
+      <motion.article
+        initial="hiddenDown"
+        animate={controls}
+        variants={{
+          hiddenDown: {
+            opacity: 0,
+            x: fromLeft ? -110 : 110,
+            y: 22,
+            scaleX: .86,
+            scaleY: .96,
+            skewX: fromLeft ? -8 : 8,
+            rotate: fromLeft ? -1.8 : 1.8,
+            transformOrigin: fromLeft ? '0% 100%' : '100% 100%'
+          },
+          hiddenUp: {
+            opacity: 0,
+            x: fromLeft ? -80 : 80,
+            y: -22,
+            scaleX: .86,
+            scaleY: .96,
+            skewX: fromLeft ? -8 : 8,
+            rotate: fromLeft ? -1.8 : 1.8,
+            transformOrigin: fromLeft ? '0% 0%' : '100% 0%'
+          },
+          visible: {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            scaleX: 1,
+            scaleY: 1,
+            skewX: 0,
+            rotate: 0,
+            transformOrigin: fromLeft ? '0% 100%' : '100% 100%'
+          }
+        }}
+        transition={{ duration: .72, ease: [0.22, 1, 0.36, 1] }}
+        id={`project-${project.id}`}
+        className="vp-project-card"
+      >
+        <div className="vp-project-preview"><div className="vp-preview-bar"><span /><span /><span /><em>{project.repo}</em></div><img src={project.previewImage} alt={project.screenshotLabel} /></div>
+        <div className="vp-project-body"><div className="vp-card-number">0{index + 1}</div><p className="vp-project-category">{project.category}</p><h3>{project.name}</h3><h4>{project.title}</h4><p className="vp-project-description">{project.about}</p><div className="vp-project-metric-grid">{project.metrics.map(metric => <div key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong></div>)}</div><ul>{project.highlights.map(highlight => <li key={highlight}><Check size={15} />{highlight}</li>)}</ul><TechSymbols tech={project.stack} className="vp-project-tech-symbols" /><a className="vp-repo-link" href={project.github} target="_blank" rel="noreferrer">Open repository <ArrowUpRight size={16} /></a></div>
+      </motion.article>
+    </div>
+  );
+}
+
 export default function App() {
   const [dark, setDark] = useState(() => window.localStorage.getItem('portfolio-theme') === 'dark');
   const [consoleOpen, setConsoleOpen] = useState(false);
@@ -142,10 +211,7 @@ export default function App() {
 
         <section className="vp-work" id="work"><div className="vp-wrap">
           <SectionIntro eyebrow="Selected projects" title="Work grounded in real systems." copy="Each project below includes its actual stack, implementation highlights, and technical outcomes." side="left" />
-          <div className="vp-project-list">{projects.map((project, index) => <motion.article {...reveal} whileHover={{ y: -6 }} transition={{ ...reveal.transition, delay: index * .08 }} id={`project-${project.id}`} key={project.id} className="vp-project-card">
-            <div className="vp-project-preview"><div className="vp-preview-bar"><span /><span /><span /><em>{project.repo}</em></div><img src={project.previewImage} alt={project.screenshotLabel} /></div>
-            <div className="vp-project-body"><div className="vp-card-number">0{index + 1}</div><p className="vp-project-category">{project.category}</p><h3>{project.name}</h3><h4>{project.title}</h4><p className="vp-project-description">{project.about}</p><div className="vp-project-metric-grid">{project.metrics.map(metric => <div key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong></div>)}</div><ul>{project.highlights.map(highlight => <li key={highlight}><Check size={15} />{highlight}</li>)}</ul><TechSymbols tech={project.stack} className="vp-project-tech-symbols" /><a className="vp-repo-link" href={project.github} target="_blank" rel="noreferrer">Open repository <ArrowUpRight size={16} /></a></div>
-          </motion.article>)}</div>
+          <div className="vp-project-list">{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</div>
         </div></section>
 
         <section className="vp-experience" id="experience"><div className="vp-wrap">
