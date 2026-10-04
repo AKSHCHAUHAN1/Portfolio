@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useAnimation, useInView, useScroll, useSpring } from 'framer-motion';
+import { MotionConfig, motion, useAnimation, useInView, useScroll, useSpring } from 'framer-motion';
 import {
   ArrowRight, ArrowUpRight, BriefcaseBusiness, Check,
   Braces, Cloud, Code2, Database, Download, Github, GitBranch, GraduationCap, Linkedin, Mail,
@@ -69,8 +69,18 @@ function TechSymbols({ tech, className = '' }) {
         const source = logo === 'aws-official'
           ? 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg'
           : `https://cdn.simpleicons.org/${logo}/${color}`;
+        const fallbackSource = logo === 'aws-official' ? source : `https://cdn.simpleicons.org/${logo}`;
         return <span key={item} className={`vp-tech-symbol vp-tech-symbol--${logo}`} data-tooltip={item} aria-label={item}>
-          <img src={source} alt="" aria-hidden="true" />
+          <img
+            src={source}
+            alt=""
+            aria-hidden="true"
+            onError={(event) => {
+              if (event.currentTarget.dataset.fallback === 'true') return;
+              event.currentTarget.dataset.fallback = 'true';
+              event.currentTarget.src = fallbackSource;
+            }}
+          />
         </span>;
       })}
     </div>
@@ -139,7 +149,7 @@ function ProjectCard({ project, index }) {
         id={`project-${project.id}`}
         className="vp-project-card"
       >
-        <div className="vp-project-preview"><div className="vp-preview-bar"><span /><span /><span /><em>{project.repo}</em></div><img src={project.previewImage} alt={project.screenshotLabel} /></div>
+        <div className="vp-project-preview"><div className="vp-preview-bar"><span /><span /><span /><em>{project.repo}</em></div><img src={project.previewImage} alt={project.screenshotLabel} loading="lazy" decoding="async" /></div>
         <div className="vp-project-body"><div className="vp-card-number">0{index + 1}</div><p className="vp-project-category">{project.category}</p><h3>{project.name}</h3><h4>{project.title}</h4><p className="vp-project-description">{project.about}</p><div className="vp-project-metric-grid">{project.metrics.map(metric => <div key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong></div>)}</div><ul>{project.highlights.map(highlight => <li key={highlight}><Check size={15} />{highlight}</li>)}</ul><TechSymbols tech={project.stack} className="vp-project-tech-symbols" /><a className="vp-repo-link" href={project.github} target="_blank" rel="noreferrer">Open repository <ArrowUpRight size={16} /></a></div>
       </motion.article>
     </div>
@@ -163,7 +173,8 @@ export default function App() {
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
     const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
-    if (document.startViewTransition) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (document.startViewTransition && !reducedMotion) {
       const transition = document.startViewTransition(() => setDark(nextTheme));
       transition.ready.then(() => document.documentElement.animate(
         { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius + 80}px at ${x}px ${y}px)`] },
@@ -175,7 +186,8 @@ export default function App() {
   };
 
   return (
-    <div className={`voxel-portfolio ${dark ? 'vp-dark' : ''}`} id="top">
+    <MotionConfig reducedMotion="user">
+      <div className={`voxel-portfolio ${dark ? 'vp-dark' : ''}`} id="top">
       <motion.div className="vp-scroll-progress" style={{ scaleX: progress }} />
       <div className="vp-glow vp-glow-one" aria-hidden="true" />
       <div className="vp-glow vp-glow-two" aria-hidden="true" />
@@ -233,6 +245,7 @@ export default function App() {
       </main>
       <PortfolioConsole open={consoleOpen} onClose={() => setConsoleOpen(false)} dark={dark} />
       <footer className="vp-footer"><div className="vp-wrap"><span>© {new Date().getFullYear()} Aksh Chauhan</span><span>DevOps & Full-Stack Engineering Portfolio</span></div></footer>
-    </div>
+      </div>
+    </MotionConfig>
   );
 }

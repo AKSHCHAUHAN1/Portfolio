@@ -144,12 +144,58 @@ export function PortfolioConsole({ open, onClose, dark }) {
   const [input, setInput] = useState('');
   const inputRef = useRef(null);
   const outputRef = useRef(null);
+  const dialogRef = useRef(null);
+  const openerRef = useRef(null);
+  const wasOpenRef = useRef(false);
 
   useEffect(() => {
-    if (!open) return undefined;
+    if (!open) {
+      if (wasOpenRef.current) {
+        const opener = openerRef.current;
+        openerRef.current = null;
+        wasOpenRef.current = false;
+        window.requestAnimationFrame(() => {
+          if (opener?.isConnected && typeof opener.focus === 'function') opener.focus();
+        });
+      }
+      return undefined;
+    }
+
+    if (!wasOpenRef.current) {
+      openerRef.current = document.activeElement;
+      wasOpenRef.current = true;
+    }
+
     inputRef.current?.focus();
     const onKeyDown = (event) => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+
+      const focusable = [...dialogRef.current.querySelectorAll(
+        'button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+      )];
+
+      if (!focusable.length) {
+        event.preventDefault();
+        dialogRef.current.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || !dialogRef.current.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !dialogRef.current.contains(active))) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
@@ -207,8 +253,8 @@ export function PortfolioConsole({ open, onClose, dark }) {
 
   return (
     <div className="vp-console-backdrop" role="presentation" onMouseDown={onClose}>
-      <section className={`vp-console ${dark ? 'vp-console--dark' : ''}`} role="dialog" aria-modal="true" aria-label="Portfolio console" onMouseDown={(event) => event.stopPropagation()}>
-        <header><div><span /><span /><span /></div><strong>portfolio console</strong><button type="button" onClick={onClose} aria-label="Close console"><X size={18} /></button></header>
+      <section ref={dialogRef} className={`vp-console ${dark ? 'vp-console--dark' : ''}`} role="dialog" aria-modal="true" aria-labelledby="portfolio-console-title" onMouseDown={(event) => event.stopPropagation()}>
+        <header><div><span /><span /><span /></div><strong id="portfolio-console-title">portfolio console</strong><button type="button" onClick={onClose} aria-label="Close console"><X size={18} /></button></header>
         <div className="vp-console-output" ref={outputRef}>{lines.map((line, index) => <p key={`${line}-${index}`}>{line || ' '}</p>)}</div>
         <form onSubmit={run}><span>›</span><input ref={inputRef} value={input} onChange={(event) => setInput(event.target.value)} placeholder="Type a command…" autoComplete="off" /><kbd>ESC</kbd></form>
       </section>

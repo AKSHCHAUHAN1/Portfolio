@@ -3590,3 +3590,44 @@ html.vp-dark-root, html.vp-dark-root body { background:#060914; }
 @media (max-width: 750px) {
   .vp-project-reveal { top: auto; min-height: 0; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .voxel-portfolio *,
+  .voxel-portfolio *::before,
+  .voxel-portfolio *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .voxel-portfolio .vp-project-card:hover,
+  .voxel-portfolio .vp-project-card:hover img,
+  .voxel-portfolio .vp-project-card:hover .vp-project-preview::after,
+  .voxel-portfolio .vp-experience-card:hover,
+  .voxel-portfolio .vp-skill-card:hover,
+  .voxel-portfolio .vp-tech-symbols span:hover,
+  .voxel-portfolio .vp-portrait-panel:hover .vp-portrait-image-wrap img,
+  .voxel-portfolio .vp-theme-toggle:hover,
+  .voxel-portfolio .vp-nav-links a:hover,
+  .voxel-portfolio .vp-nav-resume:hover,
+  .voxel-portfolio .vp-nav-contact:hover,
+  .voxel-portfolio .vp-button:hover {
+    transform: none !important;
+  }
+}
+
+/* Phase 5 micro-polish: preserve the existing composition while tightening rhythm. */
+.vp-proof { padding-top: 18px; }
+.vp-project-category { line-height: 1.5; }
+.vp-project-body h4 { line-height: 1.5; }
+.vp-project-description { margin-top: 18px; line-height: 1.65; }
+.vp-project-metric-grid { margin-top: 21px; }
+.vp-project-body ul { margin-top: 22px; }
+.vp-project-tech-symbols { margin-top: 22px; }
+.vp-repo-link { margin-top: 19px; }
+
+@media (max-width: 470px) {
+  .vp-hero { padding-top: 110px; padding-bottom: 44px; }
+  .vp-hero-grid { gap: 28px; }
+  .vp-hero-actions { margin-top: 22px; }
+  .vp-hero-meta { margin-top: 18px; }
+}
