@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { MotionConfig, motion, useAnimation, useInView, useScroll, useSpring } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { MotionConfig, motion, useScroll, useSpring } from 'framer-motion';
 import {
   ArrowRight, ArrowUpRight, BriefcaseBusiness, Check,
   Braces, Cloud, Code2, Database, Download, Github, GitBranch, GraduationCap, Linkedin, Mail,
@@ -90,82 +90,44 @@ function TechSymbols({ tech, className = '' }) {
 }
 
 function ProjectCard({ project, index }) {
-  const revealRef = useRef(null);
-  const controls = useAnimation();
-  const isInView = useInView(revealRef, { amount: .2 });
-  const [scrollDirection, setScrollDirection] = useState('down');
   const fromLeft = index % 2 === 0;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollDirection(window.scrollY > (handleScroll.previousY || 0) ? 'down' : 'up');
-      handleScroll.previousY = window.scrollY;
-    };
-    handleScroll.previousY = window.scrollY;
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    controls.start(isInView ? 'visible' : scrollDirection === 'up' ? 'hiddenUp' : 'hiddenDown');
-  }, [controls, isInView, scrollDirection]);
-
   return (
-    <div ref={revealRef} className="vp-project-reveal">
+    <div className="vp-project-reveal">
       <motion.article
-        initial="hiddenDown"
-        animate={controls}
-        variants={{
-          hiddenDown: {
-            opacity: 0,
-            x: fromLeft ? -110 : 110,
-            y: 22,
-            scaleX: .86,
-            scaleY: .96,
-            skewX: fromLeft ? -8 : 8,
-            rotate: fromLeft ? -1.8 : 1.8,
-            transformOrigin: fromLeft ? '0% 100%' : '100% 100%'
-          },
-          hiddenUp: {
-            opacity: 0,
-            x: fromLeft ? -80 : 80,
-            y: -22,
-            scaleX: .86,
-            scaleY: .96,
-            skewX: fromLeft ? -8 : 8,
-            rotate: fromLeft ? -1.8 : 1.8,
-            transformOrigin: fromLeft ? '0% 0%' : '100% 0%'
-          },
-          visible: {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            scaleX: 1,
-            scaleY: 1,
-            skewX: 0,
-            rotate: 0,
-            transformOrigin: fromLeft ? '0% 100%' : '100% 100%'
-          }
-        }}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: .15 }}
+        style={{ transformOrigin: fromLeft ? '0% 100%' : '100% 100%' }}
         transition={{ duration: .72, ease: [0.22, 1, 0.36, 1] }}
         id={`project-${project.id}`}
         className="vp-project-card"
       >
         <div className="vp-project-preview"><div className="vp-preview-bar"><span /><span /><span /><em>{project.repo}</em></div><img src={project.previewImage} alt={project.screenshotLabel} loading="lazy" decoding="async" /></div>
-        <div className="vp-project-body"><div className="vp-card-number">0{index + 1}</div><p className="vp-project-category">{project.category}</p><h3>{project.name}</h3><h4>{project.title}</h4><p className="vp-project-description">{project.about}</p><div className="vp-project-metric-grid">{project.metrics.map(metric => <div key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong></div>)}</div><ul>{project.highlights.map(highlight => <li key={highlight}><Check size={15} />{highlight}</li>)}</ul><TechSymbols tech={project.stack} className="vp-project-tech-symbols" /><a className="vp-repo-link" href={project.github} target="_blank" rel="noreferrer">Open repository <ArrowUpRight size={16} /></a></div>
+        <div className="vp-project-body"><div className="vp-card-number">0{index + 1}</div><p className="vp-project-category">{project.category}</p><h3>{project.name}</h3><h4>{project.title}</h4><p className="vp-project-description">{project.about}</p><div className="vp-project-metric-grid">{project.metrics.map(metric => <div key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong></div>)}</div><ul>{project.highlights.map(highlight => <li key={highlight}><Check size={15} />{highlight}</li>)}</ul><TechSymbols tech={project.stack} className="vp-project-tech-symbols" /><a className="vp-repo-link" href={project.github} target="_blank" rel="noopener noreferrer">Open repository <ArrowUpRight size={16} /></a></div>
       </motion.article>
     </div>
   );
 }
 
 export default function App() {
-  const [dark, setDark] = useState(() => window.localStorage.getItem('portfolio-theme') === 'dark');
+  const [dark, setDark] = useState(() => {
+    try {
+      return window.localStorage.getItem('portfolio-theme') === 'dark';
+    } catch {
+      return false;
+    }
+  });
   const [consoleOpen, setConsoleOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28, restDelta: 0.001 });
 
   useEffect(() => {
-    window.localStorage.setItem('portfolio-theme', dark ? 'dark' : 'light');
+    try {
+      window.localStorage.setItem('portfolio-theme', dark ? 'dark' : 'light');
+    } catch {
+      // Theme still works for this session when browser storage is unavailable.
+    }
     document.documentElement.classList.toggle('vp-dark-root', dark);
   }, [dark]);
 
@@ -243,7 +205,7 @@ export default function App() {
           <div className="vp-education-grid"><div className="vp-education-list">{educationHistory.map(education => <motion.article {...reveal} key={`${education.degree}-${education.period}`}><p>{education.period} · {education.location}</p><h3>{education.degree}</h3><h4>{education.institution}</h4><span>{education.specialization} · {education.grade}</span></motion.article>)}</div><div className="vp-achievement-list">{accomplishments.map(accomplishment => <motion.article {...reveal} key={accomplishment.title}><p>{accomplishment.period}</p><h3>{accomplishment.title}</h3><span>{accomplishment.issuer}</span></motion.article>)}</div></div>
         </div></section>
 
-        <section className="vp-contact" id="contact"><div className="vp-wrap"><motion.div {...reveal} className="vp-contact-card"><div><Eyebrow>Get in touch</Eyebrow><h2>Let’s discuss the next<br /><span>engineering challenge.</span></h2></div><div className="vp-contact-actions"><a className="vp-button vp-button-primary" href={`mailto:${personalInfo.email}`}>Email me <ArrowRight size={17} /></a><div><a href={personalInfo.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a><a href={personalInfo.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a><a href={`mailto:${personalInfo.email}`}><Mail size={17} /> {personalInfo.email}</a></div></div></motion.div></div></section>
+        <section className="vp-contact" id="contact"><div className="vp-wrap"><motion.div {...reveal} className="vp-contact-card"><div><Eyebrow>Get in touch</Eyebrow><h2>Let’s discuss the next<br /><span>engineering challenge.</span></h2></div><div className="vp-contact-actions"><a className="vp-button vp-button-primary" href={`mailto:${personalInfo.email}`}>Email me <ArrowRight size={17} /></a><div><a href={personalInfo.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub</a><a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn</a><a href={`mailto:${personalInfo.email}`}><Mail size={17} /> {personalInfo.email}</a></div></div></motion.div></div></section>
       </main>
       <PortfolioConsole open={consoleOpen} onClose={() => setConsoleOpen(false)} dark={dark} />
       <footer className="vp-footer"><div className="vp-wrap"><span>© {new Date().getFullYear()} Aksh Chauhan</span><span>DevOps & Full-Stack Engineering Portfolio</span></div></footer>

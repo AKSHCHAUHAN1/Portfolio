@@ -22,7 +22,7 @@ export default function Contact() {
     const email = String(form.get('email') || '').trim();
     const message = String(form.get('message') || '').trim();
 
-    if (!name || !email.includes('@') || message.length < 8) {
+    if (!name || name.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || message.length < 8 || message.length > 5000) {
       setStatus('Please complete each field with a valid email address and a short message.');
       return;
     }
@@ -54,19 +54,19 @@ export default function Contact() {
           <form onSubmit={submit}>
             <label>
               <span>Name</span>
-              <input name="name" placeholder="Your name" autoComplete="name" />
+              <input name="name" placeholder="Your name" autoComplete="name" maxLength={100} required />
             </label>
             <label>
               <span>Email</span>
-              <input name="email" placeholder="you@example.com" autoComplete="email" />
+              <input name="email" type="email" placeholder="you@example.com" autoComplete="email" maxLength={254} required />
             </label>
             <label className="payload">
               <span>Message</span>
-              <textarea name="message" placeholder="How can I help?" rows="5" />
+              <textarea name="message" placeholder="How can I help?" rows="5" minLength={8} maxLength={5000} required />
             </label>
             <button className="btn btn--primary" type="submit"><Send size={16} /> Send message</button>
           </form>
-          {status && <pre className="submit-status">{status}<span className="block-cursor" /></pre>}
+          {status && <pre className="submit-status" role="status" aria-live="polite">{status}<span className="block-cursor" /></pre>}
         </HudPanel>
         <aside className="contact-side">
           <a className="resume-node" href="/resume.pdf" download>

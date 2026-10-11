@@ -15,27 +15,34 @@ export function Header({ dark, onThemeToggle, onConsoleOpen }) {
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
+    let frame = 0;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolled(scrollY > 18);
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        setScrolled(window.scrollY > 18);
 
-      const sections = ['work', 'experience', 'skills', 'education', 'contact'];
-      let current = '';
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 240 && rect.bottom >= 120) {
-            current = `#${id}`;
+        const sections = ['work', 'experience', 'skills', 'education', 'contact'];
+        let current = '';
+        for (const id of sections) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 240 && rect.bottom >= 120) {
+              current = `#${id}`;
+            }
           }
         }
-      }
-      setActiveSection(current);
+        setActiveSection(current);
+      });
     };
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
@@ -79,13 +86,14 @@ export function Header({ dark, onThemeToggle, onConsoleOpen }) {
           className="vp-menu"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
+          aria-controls="vp-mobile-navigation"
           aria-label="Toggle navigation"
         >
           {open ? <X size={18} /> : <Menu size={18} />}
         </button>
       </div>
       {open && (
-        <nav className="vp-mobile-menu" aria-label="Mobile navigation">
+        <nav id="vp-mobile-navigation" className="vp-mobile-menu" aria-label="Mobile navigation">
           {links.map(([label, href]) => (
             <a
               key={href}

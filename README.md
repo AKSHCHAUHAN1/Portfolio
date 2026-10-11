@@ -51,5 +51,13 @@ npm run build
 
 This will bundle the assets into the `dist/` directory, minified and ready to be hosted on Vercel, Netlify, GitHub Pages, or AWS S3.
 
+## Security and deployment
+
+This is a static, client-side portfolio. It does not have a server, database, authentication, or a message submission API; the contact form opens the visitor's email app. Do not put secrets or private data in the frontend bundle.
+
+Security response headers are included in `vercel.json` for Vercel and `public/_headers` for Netlify and Cloudflare Pages. The Content Security Policy allows the external icon image CDNs used by the project. If you add another external asset or service, update the policy deliberately. GitHub Pages does not support per-site response headers; configure equivalent headers at a CDN or reverse proxy in front of it.
+
+The deployment host must serve the site over HTTPS. Review production response headers after deployment because hosts and proxies can override repository configuration.
+
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
