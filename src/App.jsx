@@ -53,9 +53,11 @@ function Eyebrow({ children }) {
   return <p className="vp-eyebrow"><span />{children}</p>;
 }
 
-function SectionIntro({ eyebrow, title, copy, side = 'left' }) {
+function SectionIntro({ eyebrow, title, copy }) {
   const words = title.split(' ');
-  const directionalReveal = { ...reveal, initial: { opacity: 0, x: side === 'right' ? 62 : -62, y: 18 } };
+  // Keep section copy inside its layout box while it reveals. Horizontal
+  // entrances were being clipped by the page edge on smaller viewports.
+  const directionalReveal = { ...reveal, viewport: { once: true, amount: 0.18 }, initial: { opacity: 0, y: 18 } };
   return <motion.div {...directionalReveal} className="vp-section-intro">
     <Eyebrow>{eyebrow}</Eyebrow><h2 aria-label={title}>{words.map((word, index) => <motion.span key={`${word}-${index}`} initial={{ opacity: 0, y: '105%' }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: .52, delay: .1 + index * .065, ease: [0.16, 1, 0.3, 1] }}>{word}&nbsp;</motion.span>)}</h2>{copy && <p>{copy}</p>}
   </motion.div>;
