@@ -21,6 +21,7 @@ function getSectionInfo(command) {
         `│  University : ${personalInfo.institution}`,
         `│  CGPA       : ${personalInfo.cgpa}`,
         `│  Location   : ${personalInfo.location}`,
+        `│  Website    : ${personalInfo.website}`,
         `│  Email      : ${personalInfo.email}`,
         `│  GitHub     : ${personalInfo.github}`,
         `│  LinkedIn   : ${personalInfo.linkedin}`,
@@ -108,6 +109,7 @@ function getSectionInfo(command) {
       return [
         `┌─ Contact ─────────────────────────────────────`,
         `│`,
+        `│  🌐 Website  : ${personalInfo.website}`,
         `│  ✉  Email    : ${personalInfo.email}`,
         `│  📱 Phone    : ${personalInfo.phone}`,
         `│  🔗 GitHub   : ${personalInfo.github}`,
