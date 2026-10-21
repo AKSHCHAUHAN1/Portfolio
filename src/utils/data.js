@@ -12,7 +12,6 @@ export const personalInfo = {
   github: 'https://github.com/AKSHCHAUHAN1',
   linkedin: 'https://linkedin.com/in/akshchauhan1',
   leetcode: 'https://leetcode.com/u/akshchauhan1',
-  website: 'https://akshchauhan.live',
   summary:
     'Computer Science undergraduate with full-stack development experience across front-end, back-end, and API layers, backed by a solid grounding in data structures, algorithms, and the software development lifecycle. Comfortable working in Agile teams with Git-based version control, CI/CD pipelines, and cloud fundamentals (AWS), and shipping production-style features – from database-backed CRUD flows to containerized deployments – both independently and as part of a team.'
 };

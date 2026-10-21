@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { MotionConfig, motion, useScroll, useSpring } from 'framer-motion';
 import {
   ArrowRight, ArrowUpRight, BriefcaseBusiness, Check,
-  Braces, Cloud, Code2, Database, Download, Github, GitBranch, Globe, GraduationCap, Linkedin, Mail,
+  Braces, Cloud, Code2, Database, Download, Github, GitBranch, GraduationCap, Linkedin, Mail,
   MapPin, ShieldCheck
 } from 'lucide-react';
 import { Header } from './components/Header';
@@ -205,7 +205,7 @@ export default function App() {
           <div className="vp-education-grid"><div className="vp-education-list">{educationHistory.map(education => <motion.article {...reveal} key={`${education.degree}-${education.period}`}><p>{education.period} · {education.location}</p><h3>{education.degree}</h3><h4>{education.institution}</h4><span>{education.specialization} · {education.grade}</span></motion.article>)}</div><div className="vp-achievement-list">{accomplishments.map(accomplishment => <motion.article {...reveal} key={accomplishment.title}><p>{accomplishment.period}</p><h3>{accomplishment.title}</h3><span>{accomplishment.issuer}</span></motion.article>)}</div></div>
         </div></section>
 
-        <section className="vp-contact" id="contact"><div className="vp-wrap"><motion.div {...reveal} className="vp-contact-card"><div><Eyebrow>Get in touch</Eyebrow><h2>Let’s discuss the next<br /><span>engineering challenge.</span></h2></div><div className="vp-contact-actions"><a className="vp-button vp-button-primary" href={`mailto:${personalInfo.email}`}>Email me <ArrowRight size={17} /></a><div><a href={personalInfo.website} target="_blank" rel="noopener noreferrer"><Globe size={17} /> Website</a><a href={personalInfo.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub</a><a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn</a><a href={`mailto:${personalInfo.email}`}><Mail size={17} /> {personalInfo.email}</a></div></div></motion.div></div></section>
+        <section className="vp-contact" id="contact"><div className="vp-wrap"><motion.div {...reveal} className="vp-contact-card"><div><Eyebrow>Get in touch</Eyebrow><h2>Let’s discuss the next<br /><span>engineering challenge.</span></h2></div><div className="vp-contact-actions"><a className="vp-button vp-button-primary" href={`mailto:${personalInfo.email}`}>Email me <ArrowRight size={17} /></a><div><a href={personalInfo.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub</a><a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn</a><a href={`mailto:${personalInfo.email}`}><Mail size={17} /> {personalInfo.email}</a></div></div></motion.div></div></section>
       </main>
       <PortfolioConsole open={consoleOpen} onClose={() => setConsoleOpen(false)} dark={dark} />
       <footer className="vp-footer"><div className="vp-wrap"><span>© {new Date().getFullYear()} Aksh Chauhan</span><span>DevOps & Full-Stack Engineering Portfolio</span></div></footer>
